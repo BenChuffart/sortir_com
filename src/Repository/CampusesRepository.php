@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Campuses;
+use App\Entity\Campus;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Campuses>
+ * @extends ServiceEntityRepository<Campus>
  *
- * @method Campuses|null find($id, $lockMode = null, $lockVersion = null)
- * @method Campuses|null findOneBy(array $criteria, array $orderBy = null)
- * @method Campuses[]    findAll()
- * @method Campuses[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Campus|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Campus|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Campus[]    findAll()
+ * @method Campus[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CampusesRepository extends ServiceEntityRepository
+class CampusRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Campuses::class);
+        parent::__construct($registry, Campus::class);
     }
 
-    public function add(Campuses $entity, bool $flush = false): void
+    public function add(Campus $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class CampusesRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Campuses $entity, bool $flush = false): void
+    public function remove(Campus $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

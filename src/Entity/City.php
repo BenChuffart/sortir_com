@@ -20,33 +20,16 @@ class City
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $idCity;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $zipCode;
+    private $postalCode;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdCity(): ?string
-    {
-        return $this->idCity;
-    }
-
-    public function setIdCity(string $idCity): self
-    {
-        $this->idCity = $idCity;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -61,14 +44,14 @@ class City
         return $this;
     }
 
-    public function getZipCode(): ?int
+    public function getPostalCode(): ?int
     {
-        return $this->zipCode;
+        return $this->postalCode;
     }
 
-    public function setZipCode(int $zipCode): self
+    public function setPostalCode(int $postalCode): self
     {
-        $this->zipCode = $zipCode;
+        $this->postalCode = $postalCode;
 
         return $this;
     }

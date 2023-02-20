@@ -20,11 +20,6 @@ class Place
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $idPlace;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $name;
 
     /**
@@ -45,18 +40,6 @@ class Place
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdPlace(): ?string
-    {
-        return $this->idPlace;
-    }
-
-    public function setIdPlace(string $idPlace): self
-    {
-        $this->idPlace = $idPlace;
-
-        return $this;
     }
 
     public function getName(): ?string

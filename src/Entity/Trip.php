@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\OutRepository;
+use App\Repository\TripRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=OutRepository::class)
- * @ORM\Table(name="`out`")
+ * @ORM\Entity(repositoryClass=TripRepository::class)
  */
-class Out
+class Trip
 {
     /**
      * @ORM\Id
@@ -17,11 +16,6 @@ class Out
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $idOut;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -46,33 +40,16 @@ class Out
     /**
      * @ORM\Column(type="integer")
      */
-    private $maxRegistrationNumber;
+    private $maxRegistration;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $information;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $shape;
+    private $informations;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdOut(): ?string
-    {
-        return $this->idOut;
-    }
-
-    public function setIdOut(string $idOut): self
-    {
-        $this->idOut = $idOut;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -123,38 +100,26 @@ class Out
         return $this;
     }
 
-    public function getMaxRegistrationNumber(): ?int
+    public function getMaxRegistration(): ?int
     {
-        return $this->maxRegistrationNumber;
+        return $this->maxRegistration;
     }
 
-    public function setMaxRegistrationNumber(int $maxRegistrationNumber): self
+    public function setMaxRegistration(int $maxRegistration): self
     {
-        $this->maxRegistrationNumber = $maxRegistrationNumber;
+        $this->maxRegistration = $maxRegistration;
 
         return $this;
     }
 
-    public function getInformation(): ?string
+    public function getInformations(): ?string
     {
-        return $this->information;
+        return $this->informations;
     }
 
-    public function setInformation(string $information): self
+    public function setInformations(string $informations): self
     {
-        $this->information = $information;
-
-        return $this;
-    }
-
-    public function getShape(): ?string
-    {
-        return $this->shape;
-    }
-
-    public function setShape(string $shape): self
-    {
-        $this->shape = $shape;
+        $this->informations = $informations;
 
         return $this;
     }
