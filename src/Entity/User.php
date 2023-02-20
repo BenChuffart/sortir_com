@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -54,6 +56,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="boolean")
      */
     private $isActive;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Trip::class, inversedBy="users")
+     */
+    private $trips;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Trip::class, mappedBy="creator")
+     */
+    private $createdTrips;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $campus;
+
+    public function __construct()
+    {
+        $this->trips = new ArrayCollection();
+        $this->createdTrips = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -188,6 +212,72 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsActive(bool $isActive): self
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Trip>
+     */
+    public function getTrips(): Collection
+    {
+        return $this->trips;
+    }
+
+    public function addTrip(Trip $trip): self
+    {
+        if (!$this->trips->contains($trip)) {
+            $this->trips[] = $trip;
+        }
+
+        return $this;
+    }
+
+    public function removeTrip(Trip $trip): self
+    {
+        $this->trips->removeElement($trip);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Trip>
+     */
+    public function getCreatedTrips(): Collection
+    {
+        return $this->createdTrips;
+    }
+
+    public function addCreatedTrip(Trip $createdTrip): self
+    {
+        if (!$this->createdTrips->contains($createdTrip)) {
+            $this->createdTrips[] = $createdTrip;
+            $createdTrip->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatedTrip(Trip $createdTrip): self
+    {
+        if ($this->createdTrips->removeElement($createdTrip)) {
+            // set the owning side to null (unless already changed)
+            if ($createdTrip->getCreator() === $this) {
+                $createdTrip->setCreator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCampus(): ?Campus
+    {
+        return $this->campus;
+    }
+
+    public function setCampus(?Campus $campus): self
+    {
+        $this->campus = $campus;
 
         return $this;
     }
