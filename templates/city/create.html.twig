@@ -1,0 +1,22 @@
+{% extends "main/base.html.twig" %} 
+
+{% block body%}
+
+    <div> 
+    {{ form_start(cityForm) }}
+    
+    {{ form_widget(cityForm) }}
+
+    <button type="submit"> Create !</button>
+
+    {{ form_end(cityForm) }}
+    </div> 
+
+{% endblock %}
+
+
+
+
+{% block title%} 
+Create a new City !
+{% endblock %}
