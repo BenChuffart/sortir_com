@@ -6,6 +6,11 @@
         {% if app.user %}
             <li><a href="{{ path('app_profil') }}" title="profil">My Profil </a></li>
             <li><a href="{{ path('app_logout') }}" title="Logout">Logout</a></li>
+
+            {% if is_granted("ROLE_ADMIN") %}
+				<li><a href="{{ path('campus_create')}}" title="createCampus">Create Campus</a></li>
+                <li><a href="{{ path('city_create')}}" title="createCity">Create City</a></li>
+			{% endif %}
             
         {% endif %}
     </ul>
