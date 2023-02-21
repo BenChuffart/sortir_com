@@ -17,6 +17,10 @@ a:hover{
     color: #8C9568;
 }
 
+img {
+    max-width: 100%;
+}
+
 label{
     display: block;
 }
