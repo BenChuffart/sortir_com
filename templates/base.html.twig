@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %} | Sortir.com{% endblock %}</title>
+    <title>{% block title %} Sortir.com{% endblock %}</title>
 
     <link rel ="icon" href=" {{ asset('img/eniLogo.png')}}">
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
@@ -14,12 +14,13 @@
 <body>
     <div class = "container">
         <header>
-            {% include("inc/nav.html.twig")%}
+         {% include("inc/nav.html.twig")%}   
         </header>
         <main>
             {% block body %}{% endblock %}
         </main>
         <footer>
+        
             <div>&copy; {{ "now"|date("Y") }} Sortir.com</div>
         </footer>   
     </div>
