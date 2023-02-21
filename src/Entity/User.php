@@ -70,7 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $createdTrips;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="users", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $campus;

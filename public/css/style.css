@@ -16,3 +16,14 @@ a{
 a:hover{
     color: #8C9568;
 }
+
+label{
+    display: block;
+}
+
+input{
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    width: 150Px;
+    max-width: 50%;
+}
