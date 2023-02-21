@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class CampusController extends AbstractController
 {
     /**
-     * @Route("/campus", name="app_list")
+     * @Route("/campus", name="campus_list")
      */
     public function list(CampusRepository $campusRepository): Response
     {
@@ -24,7 +24,7 @@ class CampusController extends AbstractController
     }
 
      /**
-     * @Route("admin/campus/create", name="app_create")
+     * @Route("admin/campus/create", name="campus_create")
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
