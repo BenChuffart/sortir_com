@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class CityController extends AbstractController
 {
     /**
-     * @Route("/admin/city/create", name="admin_create")
+     * @Route("/admin/city/create", name="city_create")
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -37,7 +37,7 @@ class CityController extends AbstractController
 
 
      /**
-     * @Route("/city", name="app_list")
+     * @Route("/city", name="city_list")
      */
     public function list(CityRepository $cityRepository): Response
     {
