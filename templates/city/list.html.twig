@@ -1,0 +1,15 @@
+{% extends "main/base.html.twig" %} 
+
+{% block body%}
+    <section class="city-list">
+        {% for city in cities %}
+            <li> {{ city }}</li>
+        {% endfor %}
+    </section>
+
+ {% endblock %}
+
+
+{% block title%} 
+The best series | {{ parent() }}
+{% endblock %}
