@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello to your new trip !{% endblock %}
+
+{% block body %}
+    <h1> Registration to a trip ! </h1>
+        {{ form_start(registrationTripForm) }}
+            {{ form_widget(registrationTripForm) }}
+            <button type="submit" class="btn"> Register </button>
+        {{ form_end(registrationTripForm) }}
+{% endblock %}
