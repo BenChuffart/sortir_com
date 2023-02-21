@@ -4,8 +4,14 @@
 
 {% block body %}
     <h1> Registration to a trip ! </h1>
-        {{ form_start(registrationTripForm) }}
-            {{ form_widget(registrationTripForm) }}
+    
+    {% if app.user & app.trip %}
+
+        {{ form_start(Camp) }}
+            {{ form_widget(Camp) }}
             <button type="submit" class="btn"> Register </button>
-        {{ form_end(registrationTripForm) }}
+        {{ form_end(Camp) }}
+
+    {% endif %}
+
 {% endblock %}
