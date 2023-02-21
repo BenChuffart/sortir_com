@@ -2,23 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %} | Sortir.com{% endblock %}</title>
+
+    <link rel ="icon" href=" {{ asset('img/eniLogo.png')}}">
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 </head>
 <body>
-    <header>
-        {% include("inc/nav.html.twig")%}
-    </header>
-    <main>
-        {% block body %}{% endblock %}
-    </main>
-    <footer>
-        {% include("inc/nav.html.twig")%}
-        <div>&copy; {{ "now"|date("Y") }} Sortir.com</div>
-    </footer>
+    <div class = "container">
+        <header>
+            {% include("inc/nav.html.twig")%}
+        </header>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+        <footer>
+            <div>&copy; {{ "now"|date("Y") }} Sortir.com</div>
+        </footer>   
+    </div>
 </body>
 </html>
