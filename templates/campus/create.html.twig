@@ -1,0 +1,22 @@
+{% extends "main/base.html.twig" %} 
+
+{% block body%}
+
+    <div> 
+    {{ form_start(campusForm) }}
+    
+    {{ form_widget(campusForm) }}
+
+    <button type="submit"> Create !</button>
+
+    {{ form_end(campusForm) }}
+    </div> 
+
+{% endblock %}
+
+
+
+
+{% block title%} 
+Create a new Campus !
+{% endblock %}
