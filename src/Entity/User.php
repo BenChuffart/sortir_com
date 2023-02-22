@@ -53,6 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $firstname;
 
     /**
+     * @Assert\Length(min=10)
      * @ORM\Column(type="string", length=10)
      */
     private $phone;

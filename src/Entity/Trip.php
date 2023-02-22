@@ -61,12 +61,6 @@ class Trip
     private $creator;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="trips")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $campus;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="trips")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -77,6 +71,12 @@ class Trip
      * @ORM\JoinColumn(nullable=false)
      */
     private $place;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="trips")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $campus;
 
     public function __construct()
     {
@@ -199,18 +199,6 @@ class Trip
         return $this;
     }
 
-    public function getCampus(): ?Campus
-    {
-        return $this->campus;
-    }
-
-    public function setCampus(?Campus $campus): self
-    {
-        $this->campus = $campus;
-
-        return $this;
-    }
-
     public function getStatus(): ?Status
     {
         return $this->status;
@@ -231,6 +219,18 @@ class Trip
     public function setPlace(?Place $place): self
     {
         $this->place = $place;
+
+        return $this;
+    }
+
+    public function getCampus(): ?Campus
+    {
+        return $this->campus;
+    }
+
+    public function setCampus(?Campus $campus): self
+    {
+        $this->campus = $campus;
 
         return $this;
     }
