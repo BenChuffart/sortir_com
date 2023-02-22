@@ -53,7 +53,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $firstname;
 
     /**
-     * @Assert\Length(min=10)
      * @ORM\Column(type="string", length=10)
      */
     private $phone;
@@ -289,5 +288,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this -> getEmail();
+    }
 
 }
