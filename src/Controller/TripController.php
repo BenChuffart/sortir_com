@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Trip;
+use App\Form\TripType;
 use App\Repository\TripRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +27,7 @@ class TripController extends AbstractController
     }
 
     /**
-     * @Route("/trip", name="app_create")
+     * @Route("/trip", name="trip_create")
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
