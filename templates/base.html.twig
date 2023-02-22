@@ -18,6 +18,9 @@
         </header>
         <main>
             {% block body %}{% endblock %}
+            {% if app.user %}
+                <h2>Hello {{ app.user.userIdentifier }} !</h2>
+            {% endif %}
         </main>
         <footer>
         
