@@ -49,7 +49,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
         // TODO: Changer la route que le fichier TWIG sera créé
-        return new RedirectResponse($this->urlGenerator->generate('some_route'));
+        return new RedirectResponse($this->urlGenerator->generate('main_home'));
 
     }
 
