@@ -4,7 +4,7 @@
 
         {% if app.user %}
 {#            <li><a href="{{ path('profil') }}" title="profil">My Profil </a></li>#}
-{#            <li><a href="{{ path('create_trip') }}" title="create trip">Create my Trip</a></li>#}
+            <li><a href="{{ path('create_trip') }}" title="create trip">Create my Trip</a></li>#}
             <li><a href="{{ path('logout') }}" title="Logout">Logout</a></li>
 
             {% if is_granted("ROLE_ADMIN") %}
