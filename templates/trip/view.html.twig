@@ -11,9 +11,14 @@
     </div>
 
     <div id ="filters">
-        <h4> Filter the trips</h4>
+        <h4> Filter the trips :</h4>
             <form>
-                <div name ="campus" value ="{{ app.campus.name }}"> Campus </div>
+                <label for ="campus">Campus </label>
+                <select name="campusChoice" id="campus">
+                    {% for campus in campuses %}
+                    <option value="">{{ campus.name }}</option>
+                    {% endfor %}
+                </select>
 
                 <label for ="nameTrip">Name of the trip </label>
                 <input type="text" class="search" name ="nameTrip" id="nameTrip">
@@ -29,7 +34,7 @@
                 </div>
 
                 <div class="selector">
-                <input type="checkbox" id="organizer" value="{{ app.trip.creator }}">
+                <input type="checkbox" id="organizer" >
                 <label for="organizer">Trip where I'm the organizer</label>
                 
                 <input type="checkbox" id="register">
@@ -47,14 +52,16 @@
 
     </div>
 
-        <div id = "allTrip">
-            <div> {{ trip.name }}</div>
-            <div> {{ trip.startDateTime }}</div>
-            <div> {{ trip.deadline }}</div>
-            <div> {{ trip.maxRegistration }}</div>
-            <div> {{ trip.status }}</div>
-            <div> {{ trip.deadline }}</div>
-            <div> {{ trip.creator }}</div>
+    <div id = "allTrip">
+        {% for trips in trip %}
+            <div> {{ trips.name }}</div>
+            <div> {{ trips.startDateTime | date("m/d/Y") }}</div>
+            <div> {{ trips.deadline |date("m/d/Y") }}</div>
+            <div> {{ trips.maxRegistration }}</div>
+            <div> {{ trips.status }}</div>
+           {# <div> {{ trips.deadline }}</div> #}
+            <div> {{ trips.creator }}</div>
         </div>
+        {% endfor %}
 
 {% endblock %}
