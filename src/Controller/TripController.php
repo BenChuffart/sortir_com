@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Trip;
 use App\Form\TripType;
+use App\Repository\CampusRepository;
 use App\Repository\TripRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,9 +46,9 @@ class TripController extends AbstractController
     /**
      * @Route("/trip", name="trip_view")
      */
-    public function view (TripRepository $tripRepository): Response
+    public function view (TripRepository $tripRepository, CampusRepository $campusRepository): Response
     {
-        $trip = $tripRepository -> findTrip();
+        $trip = $tripRepository -> findAll();
 
         if(!$trip){
             throw $this -> createNotFoundException('oh no !!');
@@ -55,6 +56,7 @@ class TripController extends AbstractController
 
         return $this->render('trip/view.html.twig', [
             'trip' => $trip,
+            'campuses' => $campusRepository -> findAll()
         ]);
           
     }
