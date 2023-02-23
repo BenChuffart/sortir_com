@@ -6,6 +6,7 @@ use App\Repository\TripRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TripRepository::class)
@@ -35,11 +36,13 @@ class Trip
     private $duration;
 
     /**
+     * @Assert\LessThan(propertyPath="startDateTime")
      * @ORM\Column(type="date")
      */
     private $deadline;
 
     /**
+     * @Assert\Range(min=1,max=20)
      * @ORM\Column(type="integer")
      */
     private $maxRegistration;
