@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello to your new trip !{% endblock %}
+
+{% block body %}
+    <h1> All the trip ! </h1>
+
+    <div id="info">
+        <h3> Date : {{ "now"|date('d/m/Y')}}</h3>
+        <h3> User : {{ app.user.firstname }}</h3>
+    </div>
+
+    <div id ="filters">
+        <h4> Filter the trips</h4>
+            <form>
+                <div name ="campus" value ="{{ app.campus.name }}"> Campus </div>
+
+                <label for ="nameTrip">Name of the trip </label>
+                <input type="text" class="search" name ="nameTrip" id="nameTrip">
+
+                <div class="date">
+                    <label for="first-time">Between</label>
+                    <input type="datetime-local" id="first-time"name="first-time" value="2022-06-12"
+                    min="2022-06-12" max="">
+
+                    <label for="last-time">And </label>
+                    <input type="datetime-local" id="last-time"name="last-time" value="2023-01-12"
+                    min="2023-01-12" max="">
+                </div>
+
+                <div class="selector">
+                <input type="checkbox" id="organizer" value="{{ app.trip.creator }}">
+                <label for="organizer">Trip where I'm the organizer</label>
+                
+                <input type="checkbox" id="register">
+                <label for="register">Trips where i'm registered</label>
+                
+                <input type="checkbox" id="notRegister">
+                <label for="notRegister">Trips where I'm not registered</label>
+                
+                <input type="checkbox" id="passed">
+                <label for="passed">Trips passed</label>
+                </div>
+
+                <input type="submit" name="submit" class="submit" value="Search">
+            <form>
+
+    </div>
+
+        <div id = "allTrip">
+            <div> {{ trip.name }}</div>
+            <div> {{ trip.startDateTime }}</div>
+            <div> {{ trip.deadline }}</div>
+            <div> {{ trip.maxRegistration }}</div>
+            <div> {{ trip.status }}</div>
+            <div> {{ trip.deadline }}</div>
+            <div> {{ trip.creator }}</div>
+        </div>
+
+{% endblock %}
