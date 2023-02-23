@@ -31,13 +31,14 @@ class Trip
     private $startDateTime;
 
     /**
+     * @Assert\Range(min=30, max =240, notInRangeMessage = "You must be between {{ min }}min and {{ max }}min")
      * @ORM\Column(type="integer")
      */
     private $duration;
 
     /**
-     * @Assert\LessThan(propertyPath="startDateTime")
-     * @ORM\Column(type="date")
+     * @Assert\LessThanOrEqual(propertyPath="startDateTime")
+     * @ORM\Column(type="datetime")
      */
     private $deadline;
 
@@ -236,5 +237,10 @@ class Trip
         $this->campus = $campus;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this -> getName();
     }
 }
