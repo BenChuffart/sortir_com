@@ -1,0 +1,30 @@
+<?php
+
+namespace App\DataFixtures;
+
+use App\Entity\City;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+
+class SqlFixtures extends Fixture
+{
+    public function load(ObjectManager $manager): void
+    {
+        $product = new City();
+        $product->setName('Nantes');
+        $product->setPostalCode(44000);
+        $manager->persist($product);
+
+        $product1 = new City();
+        $product1->setName('Rennes');
+        $product1->setPostalCode(35000);
+        $manager->persist($product1);
+
+        $product2= new City();
+        $product2->setName('Niort');
+        $product2->setPostalCode(79000);
+        $manager->persist($product2);
+
+         $manager->flush();
+    }
+}
