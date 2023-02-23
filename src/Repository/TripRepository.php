@@ -31,20 +31,21 @@ class TripRepository extends ServiceEntityRepository
         }
     }
 
-    public function findTrip()
+    /*public function findTrip()
     {
         $queryBuilder = $this -> createQueryBuilder('s');
         $queryBuilder -> leftJoin('s.name','snam')
             -> addSelect('snam');
 
         $queryBuilder -> andWhere('s.maxRegistration < 20');
+        $queryBuilder -> addOrderBy('s.startDateTime','DESC');
         $query =$queryBuilder ->getQuery();
         $query->setMaxResults(30);
 
         $paginator = new Paginator($query);
         return $paginator;
 
-    }
+    }*/
 
     public function remove(Trip $entity, bool $flush = false): void
     {
