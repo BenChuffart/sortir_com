@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Trip;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -28,6 +29,21 @@ class TripRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findTrip()
+    {
+        $queryBuilder = $this -> createQueryBuilder('s');
+        $queryBuilder -> leftJoin('s.name','snam')
+            -> addSelect('snam');
+
+        $queryBuilder -> andWhere('s.maxRegistration < 20');
+        $query =$queryBuilder ->getQuery();
+        $query->setMaxResults(30);
+
+        $paginator = new Paginator($query);
+        return $paginator;
+
     }
 
     public function remove(Trip $entity, bool $flush = false): void
