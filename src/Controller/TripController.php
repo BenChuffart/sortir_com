@@ -6,6 +6,7 @@ use App\Entity\Trip;
 use App\Form\TripType;
 use App\Repository\CampusRepository;
 use App\Repository\TripRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,20 +18,22 @@ class TripController extends AbstractController
     /**
      * @Route("/trip/create", name="trip_create")
      */
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    public function create(Request $request, EntityManagerInterface $entityManager, UserRepository $user): Response
     {
         $trip = new Trip();
         $trip -> setStartDateTime(new \DateTime());
         $tripForm = $this -> createForm(TripType::class, $trip);
-
+        
         // Permet de récupérer et d'insérer les données récupérées
         $tripForm ->handleRequest($request);
-
+        
         if($tripForm -> isSubmitted() && $tripForm -> isValid())
         {
+            $trip->setCreator($this->getUser());
+            
             $entityManager -> persist($trip);
             $entityManager -> flush();
-           // $user = $this -> getUsers(getEmail());
+           
 
             $this -> addFlash('success', 'Bien jouer !');
             return $this -> redirectToRoute('main_home');
@@ -56,7 +59,7 @@ class TripController extends AbstractController
 
         return $this->render('trip/view.html.twig', [
             'trip' => $trip,
-            'campuses' => $campusRepository -> findAll()
+            'campuses' => $campusRepository -> findAll(),
         ]);
           
     }
