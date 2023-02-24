@@ -32,7 +32,7 @@ class TripType extends AbstractType
             ])
             ->add('maxRegistration')
             ->add('informations')
-            ->add('creator')
+            //->add('creator')
             ->add('campus')
             ->add('status')
             ->add('place')
