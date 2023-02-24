@@ -12,7 +12,7 @@
 
     <div id ="filters">
         <h4> Filter the trips :</h4>
-            <form>
+            <form method="post">
                 <label for ="campus">Campus </label>
                 <select name="campusChoice" id="campus">
                     {% for campus in campuses %}
@@ -26,7 +26,7 @@
                 <div class="date">
                     <label for="first-time">Between</label>
                     <input type="datetime-local" id="first-time"name="first-time" value="2022-06-12"
-                    min="2022-06-12" max="">
+                    min="2022-12-12" max="">
 
                     <label for="last-time">And </label>
                     <input type="datetime-local" id="last-time"name="last-time" value="2023-01-12"
@@ -53,15 +53,40 @@
     </div>
 
     <div id = "allTrip">
+<table>
+    <thead>
+        <tr>
+            <td>Name Trip</td>
+            <td>Start dateTime</td>
+            <td>Deadline</td>
+            <td>Max Registration</td>
+            <td>Status</td>
+            <td>Creator</td>
+        </tr>
+    </thead>
+    <tbody>
         {% for trips in trip %}
+            <tr>
+                <td>{{ trips.name }}</td>
+                <td>{{ trips.startDateTime | date("m/d/Y") }}</td>
+                <td>{{ trips.deadline |date("m/d/Y") }}</td>
+                <td>{{ trips.maxRegistration }}</td>
+                <td>{{ trips.status }}</td>
+                <td>{{ trips.creator.firstname}} {{trips.creator.lastname}} </td>
+            </tr>      
+        {% endfor %}
+        
+    </tbody>
+</table>
+     {#   {% for trips in trip %}
             <div> {{ trips.name }}</div>
             <div> {{ trips.startDateTime | date("m/d/Y") }}</div>
             <div> {{ trips.deadline |date("m/d/Y") }}</div>
             <div> {{ trips.maxRegistration }}</div>
             <div> {{ trips.status }}</div>
            {# <div> {{ trips.deadline }}</div> #}
-            <div> {{ trips.creator }}</div>
+       {#     <div> {{ trips.creator }}</div>
         </div>
-        {% endfor %}
+        {% endfor %}#}
 
 {% endblock %}
