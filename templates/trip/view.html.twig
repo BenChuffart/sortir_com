@@ -12,7 +12,7 @@
 
     <div id ="filters">
         <h4> Filter the trips :</h4>
-            <form method="post">
+            <form method="post" action="">
                 <label for ="campus">Campus </label>
                 <select name="campusChoice" id="campus">
                     {% for campus in campuses %}
@@ -68,8 +68,8 @@
         {% for trips in trip %}
             <tr>
                 <td>{{ trips.name }}</td>
-                <td>{{ trips.startDateTime | date("m/d/Y") }}</td>
-                <td>{{ trips.deadline |date("m/d/Y") }}</td>
+                <td>{{ trips.startDateTime | date("d/m/Y") }}</td>
+                <td>{{ trips.deadline |date("d/m/Y") }}</td>
                 <td>{{ trips.maxRegistration }}</td>
                 <td>{{ trips.status }}</td>
                 <td>{{ trips.creator.firstname}} {{trips.creator.lastname}} </td>
