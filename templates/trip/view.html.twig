@@ -10,61 +10,26 @@
         <h3> User : {{ app.user.firstname }}</h3>
     </div>
 
-    <div id ="filters">
+    <div id ="filters" class="container">
         <h4> Filter the trips :</h4>
-            <form method="post" action="">
-                <label for ="campus">Campus </label>
-                <select name="campusChoice" id="campus">
-                    {% for campus in campuses %}
-                    <option value="">{{ campus.name }}</option>
-                    {% endfor %}
-                </select>
-
-                <label for ="nameTrip">Name of the trip </label>
-                <input type="text" class="search" name ="nameTrip" id="nameTrip">
-
-                <div class="date">
-                    <label for="first-time">Between</label>
-                    <input type="datetime-local" id="first-time"name="first-time" value="2022-06-12"
-                    min="2022-12-12" max="">
-
-                    <label for="last-time">And </label>
-                    <input type="datetime-local" id="last-time"name="last-time" value="2023-01-12"
-                    min="2023-01-12" max="">
-                </div>
-
-                <div class="selector">
-                <input type="checkbox" id="organizer" >
-                <label for="organizer">Trip where I'm the organizer</label>
-                
-                <input type="checkbox" id="register">
-                <label for="register">Trips where i'm registered</label>
-                
-                <input type="checkbox" id="notRegister">
-                <label for="notRegister">Trips where I'm not registered</label>
-                
-                <input type="checkbox" id="passed">
-                <label for="passed">Trips passed</label>
-                </div>
-
-                <input type="submit" name="submit" class="submit" value="Search">
-            <form>
-
+            <div class="row">
+                {% include 'filters/index.html.twig' with {form: filterform } only %} 
+            </div>
     </div>
 
-    <div id = "allTrip">
-<table>
-    <thead>
-        <tr>
-            <td>Name Trip</td>
-            <td>Start dateTime</td>
-            <td>Deadline</td>
-            <td>Max Registration</td>
-            <td>Status</td>
-            <td>Creator</td>
-        </tr>
-    </thead>
-    <tbody>
+<div id = "allTrip">
+    <table>
+        <thead>
+            <tr>
+                <td>Name Trip</td>
+                <td>Start dateTime</td>
+                <td>Deadline</td>
+                <td>Max Registration</td>
+                <td>Status</td>
+                <td>Creator</td>
+            </tr>
+        </thead>
+        <tbody>
         {% for trips in trip %}
             <tr>
                 <td>{{ trips.name }}</td>
@@ -76,8 +41,8 @@
             </tr>      
         {% endfor %}
         
-    </tbody>
-</table>
+        </tbody>
+    </table>
      {#   {% for trips in trip %}
             <div> {{ trips.name }}</div>
             <div> {{ trips.startDateTime | date("m/d/Y") }}</div>
@@ -88,5 +53,6 @@
        {#     <div> {{ trips.creator }}</div>
         </div>
         {% endfor %}#}
+</div>
 
 {% endblock %}
