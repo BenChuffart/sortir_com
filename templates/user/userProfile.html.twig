@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User's Profile</h1>
+    <h1>My Profile</h1>
+
+    <a href=""{{ path('users_modifyProfile', {'id': app.user.id}) }}"">Modify my profile</a>
 {% endblock %}
 
-{% block title %} User's Profile {{ parent() }} {% endblock %}
+{% block title %} My Profile {{ parent() }} {% endblock %}
 

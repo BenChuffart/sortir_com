@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Edit my Profile</h1>
+    {{ form_start(editForm) }}
+    {{ form_widget(editForm) }}
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(editForm) }}
+{% endblock %}
+
+{% block title %}
+    Modify my Profile {{ parent() }}
+{% endblock %}
+

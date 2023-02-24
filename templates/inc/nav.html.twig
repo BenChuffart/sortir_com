@@ -3,9 +3,7 @@
         <li><a href="{{ path('main_home') }}" title="Home">Home</a></li>
 
         {% if app.user %}
-            <li><a href="{{ path('users_myProfile') }}" title="profil">My Profil </a></li>
-            <li><a href="{{ path('users_modifyProfile') }}" title="profil">Modify Profil </a></li>
-            <li><a href="{{ path('users_userProfile') }}" title="profil">User's Profil </a></li>
+            <li><a href="{{ path('users_Profile', {'id': app.user.id}) }}" title="profil">My Profil </a></li>
             <li><a href="{{ path('trip_create') }}" title="create trip">Create my Trip</a></li>
             <li><a href="{{ path('logout') }}" title="Logout">Logout</a></li>
 
