@@ -1,12 +1,10 @@
 <nav>
     <ul>
         <li><a href="{{ path('main_home') }}" title="Home">Home</a></li>
-        <li><a href="{{ path('users_modifyProfile') }}" title="Home">Modify My Profile</a></li>
-        <li><a href="{{ path('users_userProfile') }}" title="Home">User's Profile</a></li>
 
         {% if app.user %}
-            <li><a href="{{ path('users_myProfile', {'id':app.user.id}) }}" title="My profile">My Profile</a></li>
-{#            <li><a href="{{ path('create_trip') }}" title="create trip">Create my Trip</a></li>#}
+{#            <li><a href="{{ path('profil') }}" title="profil">My Profil </a></li>#}
+            <li><a href="{{ path('create_trip') }}" title="create trip">Create my Trip</a></li>#}
             <li><a href="{{ path('logout') }}" title="Logout">Logout</a></li>
 
             {% if is_granted("ROLE_ADMIN") %}

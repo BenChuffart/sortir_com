@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Trip;
+use App\Form\TripType;
+use App\Repository\CampusRepository;
 use App\Repository\TripRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,20 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 class TripController extends AbstractController
 {
     /**
-     * @Route("/trip", name="app_view")
-     */
-    public function view (TripRepository $tripRepository): Response
-    {
-        $trip = $tripRepository -> findAll();
-
-        return $this->render('trip/index.html.twig', [
-            'trip' => $trip,
-        ]);
-          
-    }
-
-    /**
-     * @Route("/trip", name="app_create")
+     * @Route("/trip/create", name="trip_create")
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -37,10 +26,11 @@ class TripController extends AbstractController
         // Permet de récupérer et d'insérer les données récupérées
         $tripForm ->handleRequest($request);
 
-        if($tripForm -> isSubmitted && $tripForm -> isValid())
+        if($tripForm -> isSubmitted() && $tripForm -> isValid())
         {
             $entityManager -> persist($trip);
             $entityManager -> flush();
+           // $user = $this -> getUsers(getEmail());
 
             $this -> addFlash('success', 'Bien jouer !');
             return $this -> redirectToRoute('main_home');
@@ -50,6 +40,25 @@ class TripController extends AbstractController
         return $this->render('trip/create.html.twig', [
             'tripForm' => $tripForm -> createView(),
         ]);
+    }
+
+
+    /**
+     * @Route("/trip", name="trip_view")
+     */
+    public function view (TripRepository $tripRepository, CampusRepository $campusRepository): Response
+    {
+        $trip = $tripRepository -> findAll();
+
+        if(!$trip){
+            throw $this -> createNotFoundException('oh no !!');
+        }
+
+        return $this->render('trip/view.html.twig', [
+            'trip' => $trip,
+            'campuses' => $campusRepository -> findAll()
+        ]);
+          
     }
 
     /**
