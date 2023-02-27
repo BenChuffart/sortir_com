@@ -1,19 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{{ app.user.firstname }}'s profile</h1>
+    <h1>{{ user.firstname }}'s profile</h1>
     <h2>Firstname :</h2>
-    <div class="user_element">{{ app.user.firstname }}</div>
+    <div class="user_element">{{ user.firstname }}</div>
     <h2>Lastname :</h2>
-    <div class="user_element">{{ app.user.lastname }}</div>
+    <div class="user_element">{{ user.lastname }}</div>
     <h2>Email :</h2>
-    <div class="user_element">{{ app.user.email }}</div>
+    <div class="user_element">{{ user.email }}</div>
     <h2>Phone :</h2>
-    <div class="user_element">{{ app.user.phone }}</div>
+    <div class="user_element">{{ user.phone }}</div>
     <h2>Campus :</h2>
-    <div class="user_element">{{ app.user.campus }} </div>
+    <div class="user_element">{{ user.campus }} </div>
     <br><br>
-    <a href="{{ path('users_edit', {'id': app.user.id}) }}" title="edit">Edit</a>
+    {% if user == app.user %}
+        <a href="{{ path('users_edit', {'id': app.user.id}) }}" title="edit">Edit</a>
+    {% endif %}
 {% endblock %}
 
 {% block title %} My Profile {{ parent() }} {% endblock %}
