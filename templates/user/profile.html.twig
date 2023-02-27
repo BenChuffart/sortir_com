@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{{ user.firstname }}'s profile</h1>
+    <h1>{{ user.pseudo }}</h1>
     <h2>Firstname :</h2>
     <div class="user_element">{{ user.firstname }}</div>
     <h2>Lastname :</h2>
@@ -12,9 +12,8 @@
     <div class="user_element">{{ user.phone }}</div>
     <h2>Campus :</h2>
     <div class="user_element">{{ user.campus }} </div>
-    <br><br>
     {% if user == app.user %}
-        <a href="{{ path('users_edit', {'id': app.user.id}) }}" title="edit">Edit</a>
+        <div class="edit"><a href="{{ path('users_edit', {'id': app.user.id}) }}" title="edit">Edit</a></div>
     {% endif %}
 {% endblock %}
 

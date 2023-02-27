@@ -63,3 +63,13 @@ h1{
 .user_element{
     padding: 0 0 0 20px;
 }
+
+.edit{
+    width: 50px;
+    text-align: center;
+    color: #B0413E;
+    font-size: x-large;
+    font-weight: bold;
+    padding: 10px 10px;
+    margin: 10px 10px;
+}
