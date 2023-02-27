@@ -1,31 +1,33 @@
 <?php
 
 namespace App\Data;
+use App\Entity\Campus;
+use DateTime;
 
 class Filters
 {
-    /**
-     * @var string
-     */
-    public $campus ='';
 
-    /**
-    * @var string
-    */
-    public $nameTrip = '';
+    public ?Campus $campus = null;
 
-    /**
-     * @var string
-     */
-    public $startDateTime;
+    public ?string $nameTrip = null;
 
-    /**
-     * @var string
-     */
-    public $deadline;
+  
+    public ?DateTime $startDateTime=null;
 
-    /**
-     * @var boolean
-     */
-    public $trips = false;
+  
+    public?DateTime $deadline =null;
+
+    
+    public ?bool $tripsOrganized = false;
+
+   
+    public ?bool $tripsRegisted = false;
+
+   
+    public ?bool $tripsNotRegisted = false;
+
+    
+    public ?bool $tripsPassed = false;
+
+
 }
