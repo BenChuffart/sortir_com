@@ -2,6 +2,9 @@
 
 {% block body %}
     <h1>Welcome</h1>
+        {% if app.user %}
+        <h2>Hello {{ app.user.firstname }} !</h2>
+        {% endif %}
 {% endblock %}
 
 {% block title %}

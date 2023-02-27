@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ app.user.firstname }}'s profile</h1>
+    <h2>Firstname :</h2>
+    <div class="user_element">{{ app.user.firstname }}</div>
+    <h2>Lastname :</h2>
+    <div class="user_element">{{ app.user.lastname }}</div>
+    <h2>Email :</h2>
+    <div class="user_element">{{ app.user.email }}</div>
+    <h2>Phone :</h2>
+    <div class="user_element">{{ app.user.phone }}</div>
+    <h2>Campus :</h2>
+    <div class="user_element">{{ app.user.campus }} </div>
+    <br><br>
+    <a href="{{ path('users_edit', {'id': app.user.id}) }}" title="edit">Edit</a>
+{% endblock %}
+
+{% block title %} My Profile {{ parent() }} {% endblock %}
+

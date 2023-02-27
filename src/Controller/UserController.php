@@ -2,35 +2,37 @@
 
 namespace App\Controller;
 
+use App\Form\EditType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 /**
- * @Route("/users", name="users_")
+ * @Route("/users", name="users")
  */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/Profile/{id}", name="Profile")
+     * @Route("/profile/{id}", name="_profile")
      */
     public function showMyProfile(int $id, UserRepository $userRepository): Response
     {
         $userProfile = $userRepository->find($id);
 
-        return $this->render('user/userProfile.html.twig', [
+        return $this->render('user/profile.html.twig', [
             "user" => $userProfile
         ]);
     }
 
     /**
-     * @Route("/modifyProfile/{id}", name="modifyProfile")
+     * @Route("/edit_profile/{id}", name="_edit")
      */
-    public function editMyProfile(int $id,Request $request,EntityManagerInterface $entityManager): Response
+    public function editMyProfile(int $id,Request $request,EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
-        $editForm = $this->createForm(User::class);
+        $user = $userRepository->find($id);
+        $editForm = $this->createForm(EditType::class, $user);
 
         $editForm->handleRequest($request);
         if($editForm->isSubmitted() && $editForm->isValid()){
@@ -41,10 +43,10 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Profile updated !');
 
-            return $this->redirectToRoute('users_Profile');
+            return $this->redirectToRoute('main_home');
         }
 
-        return $this->render('editProfile.html.twig', [
+        return $this->render('user/edit_profile.html.twig', [
             'editForm' => $editForm->createView()
         ]);
     }

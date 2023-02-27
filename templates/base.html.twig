@@ -18,12 +18,8 @@
         </header>
         <main>
             {% block body %}{% endblock %}
-            {% if app.user %}
-                <h2>Hello {{ app.user.firstname }} !</h2>
-            {% endif %}
         </main>
         <footer>
-        
             <div>&copy; {{ "now"|date("Y") }} Sortir.com</div>
         </footer>   
     </div>
