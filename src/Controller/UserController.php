@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\EditPasswordType;
 use App\Form\EditType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,7 +28,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/edit_profile/{id}", name="_edit")
+     * @Route("/edit_profile/{id}", name="_editProfile")
      */
     public function editMyProfile(int $id,Request $request,EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
@@ -47,6 +48,31 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/edit_profile.html.twig', [
+            'editForm' => $editForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/edit_password/{id}", name="_editPassword")
+     */
+    public function editPassword(int $id,Request $request,EntityManagerInterface $entityManager, UserRepository $userRepository): Response
+    {
+        $user = $userRepository->find($id);
+        $editForm = $this->createForm(EditPasswordType::class, $user);
+
+        $editForm->handleRequest($request);
+        if($editForm->isSubmitted() && $editForm->isValid()){
+            $user = $editForm->getData();
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Profile updated !');
+
+            return $this->redirectToRoute('main_home');
+        }
+
+        return $this->render('user/edit_password.html.twig', [
             'editForm' => $editForm->createView()
         ]);
     }

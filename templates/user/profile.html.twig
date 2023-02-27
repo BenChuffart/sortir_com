@@ -13,7 +13,8 @@
     <h2>Campus :</h2>
     <div class="user_element">{{ user.campus }} </div>
     {% if user == app.user %}
-        <div class="edit"><a href="{{ path('users_edit', {'id': app.user.id}) }}" title="edit">Edit</a></div>
+        <div class="edit"><a href="{{ path('users_editProfile', {'id': app.user.id}) }}" title="editProfile">Edit</a></div>
+        <div class="edit"><a href="{{ path('users_editPassword', {'id': app.user.id}) }}" title="editPassword">Change Password</a></div>
     {% endif %}
 {% endblock %}
 
