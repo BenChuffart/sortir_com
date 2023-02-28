@@ -21,12 +21,12 @@
     <table>
         <thead>
             <tr>
-                <td>Name Trip</td>
-                <td>Start dateTime</td>
-                <td>Deadline</td>
-                <td>Max Registration</td>
-                <td>Status</td>
-                <td>Creator</td>
+                <th>Name Trip</th>
+                <th>Start dateTime</th>
+                <th>Deadline</th>
+                <th>Max Registration</th>
+                <th>Status</th>
+                <th>Creator</th>
             </tr>
         </thead>
         <tbody>
@@ -35,9 +35,9 @@
                 <td>{{ trip.name }}</td>
                 <td>{{ trip.startDateTime | date("d/m/Y") }}</td>
                 <td>{{ trip.deadline |date("d/m/Y") }}</td>
-                <td>{{ trip.maxRegistration }}</td>
+                <td>{{ trip.maxRegistration }} people</td>
                 <td>{{ trip.status }}</td>
-                <td>{{ trip.creator.firstname }} {{ trips.creator.lastname }}</td>
+                <td><a href="{{ path('users_profile', {'id': trip.creator.id }) }}">{{ trip.creator.pseudo }}</a></td>
             </tr>      
         {% endfor %}
         

@@ -80,3 +80,23 @@ input[type="checkbox"]{
     width: 25px;
     max-width: 50%;
 }
+
+table{
+    table-layout: fixed;
+    width: 90%;
+    border-collapse: collapse;
+    border: 3px solid #e0e0e0;
+    margin: 20px;
+}
+
+th, td {
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid #e0e0e0;
+    padding: 2px;
+    text-align: center;
+}
+
+td {
+    color: #999999;
+}
