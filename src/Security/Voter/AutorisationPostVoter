@@ -44,7 +44,7 @@ class AutorisationPostVoter extends Voter
         if($this -> security-> IsGranted('ROLE_ADMIN')) return true;
 
         //Vérifie qui a créer le trip
-        if(null === $trip ->getUser()) return false;
+        if(null === $trip ->getCreator()) return false;
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
