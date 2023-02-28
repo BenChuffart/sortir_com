@@ -30,29 +30,19 @@
             </tr>
         </thead>
         <tbody>
-        {% for trips in trip %}
+        {% for trip in trips %}
             <tr>
-                <td>{{ trips.name }}</td>
-                <td>{{ trips.startDateTime | date("d/m/Y") }}</td>
-                <td>{{ trips.deadline |date("d/m/Y") }}</td>
-                <td>{{ trips.maxRegistration }}</td>
-                <td>{{ trips.status }}</td>
-                <td>{{ trips.creator.firstname}} {{trips.creator.lastname}} </td>
+                <td>{{ trip.name }}</td>
+                <td>{{ trip.startDateTime | date("d/m/Y") }}</td>
+                <td>{{ trip.deadline |date("d/m/Y") }}</td>
+                <td>{{ trip.maxRegistration }}</td>
+                <td>{{ trip.status }}</td>
+                <td>{{ trip.creator.firstname }} {{ trips.creator.lastname }}</td>
             </tr>      
         {% endfor %}
         
         </tbody>
     </table>
-     {#   {% for trips in trip %}
-            <div> {{ trips.name }}</div>
-            <div> {{ trips.startDateTime | date("m/d/Y") }}</div>
-            <div> {{ trips.deadline |date("m/d/Y") }}</div>
-            <div> {{ trips.maxRegistration }}</div>
-            <div> {{ trips.status }}</div>
-           {# <div> {{ trips.deadline }}</div> #}
-       {#     <div> {{ trips.creator }}</div>
-        </div>
-        {% endfor %}#}
 </div>
 
 {% endblock %}

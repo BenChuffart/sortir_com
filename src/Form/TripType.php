@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Place;
+use App\Entity\Status;
 use App\Entity\Trip;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -33,9 +36,11 @@ class TripType extends AbstractType
             ->add('maxRegistration')
             ->add('informations')
             //->add('creator')
-            ->add('campus')
-            ->add('status')
-            ->add('place')
+            ->add('place', EntityType::class, [
+                'class' => Place::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Choose the place'
+            ])
         ;
     }
 

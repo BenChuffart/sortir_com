@@ -44,8 +44,8 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/trip/create, roles: ROLE_USER }
+        - { path: ^/users, roles: ROLE_USER }
+        - { path: ^/trips, roles: ROLE_USER }
 
 when@test:
     security:

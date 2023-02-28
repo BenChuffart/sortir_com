@@ -2,19 +2,20 @@
     <ul>
         <li><a href="{{ path('main_home') }}" title="Home">Home</a></li>
 
+
         {% if app.user %}
             <li><a href="{{ path('users_profile', {'id': app.user.id}) }}" title="profil">My Profil </a></li>
-            <li><a href="{{ path('trip_create') }}" title="create trip">Create my Trip</a></li>
-            <li><a href="{{ path('logout') }}" title="Logout">Logout ({{ app.user.firstname }})</a></li>
+            <li><a href="{{ path('trips_view') }}" title="trip list">Trip list</a></li>
+            <li><a href="{{ path('trips_create') }}" title="create trip">Create my Trip</a></li>
+            <li><a href="{{ path('logout') }}" title="Logout">Logout ({{ app.user.pseudo }})</a></li>
 
             {% if is_granted("ROLE_ADMIN") %}
 				<li><a href="{{ path('campus_create')}}" title="createCampus">Create Campus</a></li>
-                <li><a href="{{ path('city_create')}}" title="createCity">Create City</a></li>
+{#                <li><a href="{{ path('city_create')}}" title="createCity">Create City</a></li>#}
 
             {% endif %}
 
         {% else %}
-
             <li><a href="{{ path('login') }}" title="Login">Login</a></li>
             <li><a href="{{ path('register') }}" title="Register">Register</a></li>
 

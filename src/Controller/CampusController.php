@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Campus;
+use App\Form\CampusType;
 use App\Repository\CampusRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ class CampusController extends AbstractController
     public function list(CampusRepository $campusRepository): Response
     {
         $campuses = $campusRepository -> findAll();
-        return $this->render('campus/list.html.twig', [
+        return $this->render('admin/campus/list.html.twig', [
             'campuses' => $campuses,
         ]);
     }
