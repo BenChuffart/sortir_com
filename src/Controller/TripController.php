@@ -3,24 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\Trip;
-use App\Entity\User;
 use App\Form\TripType;
 use App\Data\Filters;
+use App\Entity\User;
 use App\Form\FiltersType;
-use App\Repository\StatusRepository;
 use App\Repository\TripRepository;
+use App\Repository\StatusRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-/**
- * @Route("/trips", name="trips")
- */
+
 class TripController extends AbstractController
 {
     /**
-     * @Route("/create", name="_create")
+     * @Route("/trip/create", name="trip_create")
      */
     public function create(Request $request, EntityManagerInterface $entityManager, StatusRepository $statusRepository): Response
     {
@@ -34,6 +32,7 @@ class TripController extends AbstractController
         
         if($tripForm -> isSubmitted() && $tripForm -> isValid())
         {
+
             $status = $statusRepository->find(1);
             $trip -> setStatus($status);
 
@@ -41,39 +40,81 @@ class TripController extends AbstractController
             $user = $this->getUser();
             $trip->setCreator($user);
             $trip->setCampus($user->getCampus());
-
+            
             $entityManager -> persist($trip);
             $entityManager -> flush();
+           
 
             $this -> addFlash('success', 'Bien jouer !');
             return $this -> redirectToRoute('main_home');
         }
 
 
-
-        return $this->render('trips/create.html.twig', [
+        return $this->render('trip/create.html.twig', [
             'tripForm' => $tripForm -> createView(),
         ]);
     }
 
 
     /**
-     * @Route("/view", name="_view")
+     * @Route("/trip", name="trip_view")
      */
     public function view (TripRepository $tripRepository, Request $request): Response
     {
-
+        
         $data = new Filters();
-        $data -> campus = $this -> getUser()->getCampus();
+        $data -> campus = $this -> getUser()-> getCampus();
         $filterform = $this -> createform(FiltersType::class, $data);
         $filterform -> handleRequest($request);
         $search = $tripRepository -> findTrip($data,$this-> getUser());
+        
     
-        return $this->render('trips/view.html.twig', [
+        return $this->render('trip/view.html.twig', [
             'filterform' => $filterform -> createView(),
             'trips' => $search
         ]);
           
     }
 
+    /**
+     * @Route("/trip/editTrip", name="trip_editTrip")
+     */
+    public function editTrip(Trip $trip,User $user)
+    {
+        if($this -> isGranted('POST_EDIT',$trip))
+        {
+            
+            return $this -> redirectToRoute('trip_view');
+        }
+        $this -> addFlash('Denied', 'Accès refusé !');
+        return $this->render('trip/view.html.twig');
+    }
+
+     /**
+     * @Route("/trip/deletTrip", name="trip_deleteTrip")
+     */
+    public function deleteTrip(Trip $trip,User $user)
+    {
+        if($this -> isGranted('POST_DELETE',$trip))
+        {
+            
+            return $this -> redirectToRoute('trip_view');
+        }
+        $this -> addFlash('Denied', 'Accès refusé !');
+        return $this->render('trip/view.html.twig');
+    }
+
+    /**
+     * @Route("/trip/viewATrip", name="trip_viewATrip")
+     */
+    public function viewATrip(Trip $trip,User $user)
+    {
+        if($this -> isGranted('POST_EDIT',$trip))
+        {
+            
+            return $this -> redirectToRoute('trip_view');
+        }
+        $this -> addFlash('Denied', 'Accès refusé !');
+        return $this->render('trip/view.html.twig');
+    }
 }
