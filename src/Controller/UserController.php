@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/users", name="users")
@@ -55,14 +56,19 @@ class UserController extends AbstractController
     /**
      * @Route("/edit_password/{id}", name="_editPassword")
      */
-    public function editPassword(int $id,Request $request,EntityManagerInterface $entityManager, UserRepository $userRepository): Response
+    public function editPassword(int $id,Request $request,EntityManagerInterface $entityManager, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $user = $userRepository->find($id);
         $editForm = $this->createForm(EditPasswordType::class, $user);
 
         $editForm->handleRequest($request);
         if($editForm->isSubmitted() && $editForm->isValid()){
-            $user = $editForm->getData();
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $editForm->get('plainPassword')->getData()
+                )
+            );
 
             $entityManager->persist($user);
             $entityManager->flush();
