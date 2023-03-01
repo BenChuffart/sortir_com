@@ -4,7 +4,6 @@ namespace App\Security\Voter;
 
 use App\Entity\User;
 use App\Entity\Trip;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
@@ -48,18 +47,22 @@ class AutorisationPostVoter extends Voter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
+
             case self::EDIT:
-                //Vérif si on peut modifier 
+                //Vérif si on peut modifier
+                /** @var User $user */
                  return $this->canEdit($trip,$user);
                 // return true or false
                 break;
             case self::VIEW:
                 //Vérif si on peut voir
+                /** @var User $user */
                 return $this -> canView($trip,$user);
                 // return true or false
                 break;
                 case self::DELETE:
                     //Vérif si on peut supprimer
+                    /** @var User $user */
                     return $this->canDelete($trip,$user);
                    // return true or false
                    break;

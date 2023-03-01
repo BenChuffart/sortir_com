@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ trip.name }}</h1>
+    <h2>Creator :</h2>
+    <div>{{ trip.creator.pseudo }}</div>
+    <h2>Campus :</h2>
+    <div>{{ trip.campus.name }}</div>
+    <h2>Status :</h2>
+    <div>{{ trip.status.label }}</div>
+    <h2>Place :</h2>
+    <div>{{ trip.place.name }}</div>
+    <h2>Date :</h2>
+    <div>{{ trip.startDateTime | date("d/m/Y") }}</div>
+    <h2>Duration :</h2>
+    <div>{{ trip.duration }} minutes</div>
+    <h2>Deadline :</h2>
+    <div>{{ trip.deadline | date("d/m/Y") }}</div>
+    <h2>Fellows :</h2>
+    <div>
+        {% if trip.users %}
+            {% for user in users  %}
+                {{ trip.users.pseudo }}
+            {% endfor %}
+        {% else %}
+            No fellows... for now !
+        {% endif %}
+    </div>
+    <h2>Informations :</h2>
+    <div>
+        {% if trip.informations %}
+            {{ trip.informations }}
+        {% else %}
+            No more informations
+        {% endif %}
+    </div>
+        {% if trip.creator == app.user %}
+            <div class="edit">
+                <a href="{{ path('trips_edit', {'id': trip.id}) }}" title="edit trip">Edit</a>
+            </div>
+    {% endif %}
+
+    <br><br>
+{% endblock %}
+
+{% block title %}{{ trip.name }}{% endblock %}
+

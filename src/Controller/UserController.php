@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Form\EditPasswordType;
-use App\Form\EditType;
+use App\Form\UserEditType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,7 +34,7 @@ class UserController extends AbstractController
     public function editMyProfile(int $id,Request $request,EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
         $user = $userRepository->find($id);
-        $editForm = $this->createForm(EditType::class, $user);
+        $editForm = $this->createForm(UserEditType::class, $user);
 
         $editForm->handleRequest($request);
         if($editForm->isSubmitted() && $editForm->isValid()){
@@ -45,7 +45,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Profile updated !');
 
-            return $this->redirectToRoute('main_home');
+            return $this->redirectToRoute("main_home");
         }
 
         return $this->render('user/edit_profile.html.twig', [

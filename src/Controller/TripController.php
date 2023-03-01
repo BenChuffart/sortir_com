@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Campus;
 use App\Entity\Trip;
 use App\Entity\User;
+use App\Form\TripEditType;
 use App\Form\TripType;
 use App\Data\Filters;
 use App\Form\FiltersType;
@@ -59,16 +59,14 @@ class TripController extends AbstractController
 
 
     /**
-     * @Route("/view", name="_view")
+     * @Route("/list", name="_list")
      */
-    public function view (TripRepository $tripRepository, Request $request): Response
+    public function showList (TripRepository $tripRepository, Request $request): Response
     {
         $filters = new Filters();
 
         /** @var User $user */
         $user = $this->getUser();
-
-        /** @var Campus $campus */
         $campus = $user->getCampus();
 
         $filters ->campus = $campus;
@@ -78,11 +76,49 @@ class TripController extends AbstractController
 
         $search = $tripRepository -> findTrip($filters, $user);
     
-        return $this->render('trips/view.html.twig', [
+        return $this->render('trips/list.html.twig', [
             'filterForm' => $filterForm -> createView(),
             'trips' => $search
         ]);
           
+    }
+
+    /**
+     * @Route("/details/{id}", name="_details")
+     */
+    public function tripDetails (int $id, TripRepository $tripRepository): Response
+    {
+        $tripDetails = $tripRepository->find($id);
+
+        return $this->render('trips/details.html.twig', [
+            'trip' => $tripDetails,
+            'users' => $tripDetails->getUsers()
+        ]);
+    }
+
+    /**
+     * @Route("/edit/{id}", name="_edit")
+     */
+    public function editTrip (int $id, TripRepository $tripRepository, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $trip = $tripRepository->find($id);
+        $editForm = $this->createForm(TripEditType::class, $trip);
+
+        $editForm->handleRequest($request);
+        if($editForm->isSubmitted() && $editForm->isValid()){
+            $trip = $editForm->getData();
+
+            $entityManager->persist($trip);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Trip edited !');
+            return $this->redirectToRoute('trips_list');
+        }
+
+        return $this->render('trips/edit.html.twig', [
+            'editForm' => $editForm->createView(),
+            'trip' => $trip
+        ]);
     }
 
 }
