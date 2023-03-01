@@ -86,51 +86,36 @@ class TripController extends AbstractController
             
             return $this -> redirectToRoute('trip_view');
         }
+
         $this -> addFlash('Denied', 'Accès refusé !');
         return $this->render('trip/view.html.twig');
     }
 
      /**
-     * @Route("/trip/deletTrip", name="trip_deleteTrip")
+     * @Route("/trip/deletTrip/{id}", name="trip_deleteTrip")
      */
-    public function deleteTrip(Trip $trip,User $user)
+    public function deleteTrip(int $id,TripRepository $tripRepository,Trip $trip)
     {
         if($this -> isGranted('POST_DELETE',$trip))
         {
-            
-            return $this -> redirectToRoute('trip_view');
+            $showTrip = $tripRepository-> find($trip);
+            return $this -> render('trip/deleteTrip.html.twig',[
+                "trip" => $showTrip
+            ]);
         }
-        $this -> addFlash('Denied', 'Accès refusé !');
-        return $this->render('trip/view.html.twig');
+
+       /* $this -> addFlash('Denied', 'Accès refusé !');
+        return $this->render('trip/view.html.twig');*/
     }
 
     /**
-     * @Route("/trip/viewATrip", name="trip_viewATrip")
+     * @Route("/trip/showTrip/{id}", name="trip_showTrip")
      */
-    public function viewATrip(Trip $trip,User $user)
+    public function showTrip(int $id,TripRepository $tripRepository) :Response
     {
-        if($this -> isGranted('POST_EDIT',$trip))
-        {
-            
-            return $this -> redirectToRoute('trip_view');
-        }
-        $this -> addFlash('Denied', 'Accès refusé !');
-        return $this->render('trip/view.html.twig');
-    }
-    
-        /**
-     * @Route("/trip/show_trip/{id}", name="_tripShow")
-     * @param int $id
-     * @param TripRepository $tripRepository
-     * @return Response
-     */
-    public function showTrip (int $id, TripRepository $tripRepository): Response
-    {
-        $showTrip = $tripRepository->find($id);
-
-        return $this->render('trip/showTrip.html.twig', [
+        $showTrip = $tripRepository-> find($id);
+        return $this-> render('trip/showTrip.html.twig',[
             "trip" => $showTrip
         ]);
     }
-     
 }
