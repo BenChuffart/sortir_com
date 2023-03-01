@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# Il manquera la date & heure de la sortie / la deadline / longitude / latitude #}
+
+    <h1>Afficher une sortie</h1>
+    <h6>Name :</h6>
+    <div class="trip_element">{{ trip.name }}</div>
+    <h6>Duration :</h6>
+    <div class="trip_element">{{ trip.duration }}</div>
+    <h6>Max registrations :</h6>
+    <div class="trip_element">{{ trip.maxRegistration }}</div>
+    <h6>Informations :</h6>
+    <div class="trip_element">{{ trip.informations }}</div>
+    <h6>Creator :</h6>
+    <div class="trip_element">{{ trip.creator }}</div>
+    <h6>Status :</h6>
+    <div class="trip_element">{{ trip.status }}</div>
+    <h6>Place :</h6>
+    <div class="trip_element">{{ trip.place }}</div>
+    <h6>Campus :</h6>
+    <div class="trip_element">{{ trip.campus }}</div>
+
+    <h1>Liste des participants inscrits</h1>
+
+    <div id="allUsers">
+    <table>
+        <thead>
+        <tr>
+            <td>Pseudo</td>
+            <td>Lastname, firstname</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for users in trip %} 
+            <tr>
+                <td>{{ user.pseudo }}</td>
+           {#  <td>{{ app.user.firstname }} {{ app.user.lastname }}</td> #}
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
