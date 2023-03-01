@@ -42,20 +42,20 @@
             
                 <td>
                 {% if is_granted("POST_EDIT",trip)%}
-                    <a href=" path("trip_editTrip",{ id : trip.id })">Modifier</a>
+                    <a href="{{ path('trip_editTrip',{ 'id' : trip.id }) }}">Modifier</a>
                 {% endif %}
                 {% if is_granted("POST_VIEW",trip)%}
-                     <a href="{{ path('_tripShow', {'id': trip.id }) }}">Afficher</a>
+                    <a href="{{ path('trip_showTrip',{ 'id' : trip.id }) }}">Afficher</a>
                 {% endif %}
                 {% if is_granted("POST_DELETE",trip)%}
-                    <a href=" path(" trip_deleteTrip ",{ id : trip.id })">Supprimer</a>
+                    <a href="{{ path('trip_deleteTrip',{ 'id' : trip.id }) }}">Supprimer</a>
+                {% endif %}
+                {#{% if is_granted("POST_EDIT",trip)%}
+                    <a href="{{ path('',{ 'id' : trip.id }) }}">S'inscrire</a>
                 {% endif %}
                 {% if is_granted("POST_EDIT",trip)%}
-                    <a href=" path("",{ id : trip.id })">S'inscrire</a>
-                {% endif %}
-                {% if is_granted("POST_EDIT",trip)%}
-                    <a href=" path("",{ id : trip.id })">Se Désinster</a>
-                {% endif %}
+                    <a href="{{ path('',{ 'id' : trip.id }) }}">Se Désinster</a>
+                {% endif %}#}
                     
                 </td>
                 
