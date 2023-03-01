@@ -35,12 +35,12 @@ class TripRepository extends ServiceEntityRepository
     }
 
     // FILTRES TOUT LES TRIPS EN LIEN DE LA RECHERCHE 
-    public function findTrip(Filters $filters,User $user, int $id, string $name) : array{
+    public function findTrip(Filters $filters, User $user) : array{
 
     
-        $query = $this -> createQueryBuilder('s')
-                        -> andWhere ('s.name LIKE :name')
-                        -> setParameter('name',"%{$name}%");
+        $query = $this -> createQueryBuilder('s');
+                       /* -> andWhere ('s.name LIKE :name')
+                        -> setParameter('name',"%{$name}%");*/
 
        if(!empty($filters -> campus))
        {
@@ -51,8 +51,8 @@ class TripRepository extends ServiceEntityRepository
        if(!empty($filters -> nameTrip))
        {
             $query = $query 
-                ->andWhere('s.name LIKE :nameTrip')
-                ->setParameter('nameTrip',"%{ $filters -> nameTrip}%");
+                ->andWhere('s.name LIKE :name')
+                ->setParameter('name',"%{ $filters -> nameTrip}%");
        }
        if(!empty($filters -> startDateTime))
        {
@@ -76,13 +76,13 @@ class TripRepository extends ServiceEntityRepository
        {
             $query = $query 
                 ->andWhere(':user MEMBER OF s.users')
-                ->setParameter('user', $id);
+                ->setParameter('user', $user);
        }
        if($filters -> tripsNotRegisted)
        {
             $query = $query 
                 ->andWhere('s.tripsNotRegisted NOT MEMBER OF s.users')
-                ->setParameter('tripsNotRegisted',$id);
+                ->setParameter('tripsNotRegisted',$user);
        }
        if($filters -> tripsPassed)
        {
