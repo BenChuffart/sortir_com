@@ -21,12 +21,13 @@
     <table>
         <thead>
             <tr>
-                <th>Name Trip</th>
-                <th>Start dateTime</th>
-                <th>Deadline</th>
-                <th>Max Registration</th>
-                <th>Status</th>
-                <th>Creator</th>
+                <td>Name Trip</td>
+                <td>Start dateTime</td>
+                <td>Deadline</td>
+                <td>Max Registration</td>
+                <td>Status</td>
+                <td>Creator</td>
+                <td>Action </td>
             </tr>
         </thead>
         <tbody>
@@ -35,9 +36,29 @@
                 <td>{{ trip.name }}</td>
                 <td>{{ trip.startDateTime | date("d/m/Y") }}</td>
                 <td>{{ trip.deadline |date("d/m/Y") }}</td>
-                <td>{{ trip.maxRegistration }} people</td>
+                <td>{{ trip.maxRegistration }}</td>
                 <td>{{ trip.status }}</td>
                 <td><a href="{{ path('users_profile', {'id': trip.creator.id }) }}">{{ trip.creator.pseudo }}</a></td>
+            
+                <td>
+                {% if is_granted("POST_EDIT",trip)%}
+                    <a href=" path("trip_editTrip",{ id : trip.id })">Modifier</a>
+                {% endif %}
+                {% if is_granted("POST_VIEW",trip)%}
+                    <a href=" path("trip_viewATrip",{ id : trip.id })">Afficher</a>
+                {% endif %}
+                {% if is_granted("POST_DELETE",trip)%}
+                    <a href=" path(" trip_deleteTrip ",{ id : trip.id })">Supprimer</a>
+                {% endif %}
+                {% if is_granted("POST_EDIT",trip)%}
+                    <a href=" path("",{ id : trip.id })">S'inscrire</a>
+                {% endif %}
+                {% if is_granted("POST_EDIT",trip)%}
+                    <a href=" path("",{ id : trip.id })">Se Désinster</a>
+                {% endif %}
+                    
+                </td>
+                
             </tr>      
         {% endfor %}
         
