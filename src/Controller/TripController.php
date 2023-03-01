@@ -117,4 +117,20 @@ class TripController extends AbstractController
         $this -> addFlash('Denied', 'Accès refusé !');
         return $this->render('trip/view.html.twig');
     }
+    
+        /**
+     * @Route("/show_trip/{id}", name="_tripShow")
+     * @param int $id
+     * @param TripRepository $tripRepository
+     * @return Response
+     */
+    public function showTrip (int $id, TripRepository $tripRepository): Response
+    {
+        $showTrip = $tripRepository->find($id);
+
+        return $this->render('trip/showTrip.html.twig', [
+            "trip" => $showTrip
+        ]);
+    }
+    
 }
