@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Campus;
 use App\Entity\Trip;
 use App\Entity\User;
 use App\Form\TripType;
@@ -62,15 +63,23 @@ class TripController extends AbstractController
      */
     public function view (TripRepository $tripRepository, Request $request): Response
     {
+        $filters = new Filters();
 
-        $data = new Filters();
-        $data -> campus = $this -> getUser()->getCampus();
-        $filterform = $this -> createform(FiltersType::class, $data);
-        $filterform -> handleRequest($request);
-        $search = $tripRepository -> findTrip($data,$this-> getUser());
+        /** @var User $user */
+        $user = $this->getUser();
+
+        /** @var Campus $campus */
+        $campus = $user->getCampus();
+
+        $filters ->campus = $campus;
+
+        $filterForm = $this -> createform(FiltersType::class, $filters);
+        $filterForm -> handleRequest($request);
+
+        $search = $tripRepository -> findTrip($filters, $user);
     
         return $this->render('trips/view.html.twig', [
-            'filterform' => $filterform -> createView(),
+            'filterForm' => $filterForm -> createView(),
             'trips' => $search
         ]);
           

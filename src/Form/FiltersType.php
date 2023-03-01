@@ -22,6 +22,7 @@ class FiltersType extends AbstractType
                 'class' => Campus::class,
                 'required' => false,
                 'choice_label' => 'name',
+                'placeholder' => 'All the campuses'
             ])
             ->add('nameTrip', TextType::class,[
                 'label' => 'Name Trip',
@@ -41,19 +42,19 @@ class FiltersType extends AbstractType
                 'required' => false
             ])
             ->add('tripsOrganized', CheckboxType::class, [
-                'label' => 'Trips where I organized',
+                'label' => 'My created trips',
                 'required' => false,
             ])
             ->add('tripsRegisted', CheckboxType::class, [
-                'label' => 'Trips where I registed',
+                'label' => 'My future trips',
                 'required' => false,
             ])
             ->add('tripsNotRegisted', CheckboxType::class, [
-                'label' => 'Trips wherec I not registed',
+                'label' => 'Other trips',
                 'required' => false,
             ])
             ->add('tripsPassed', CheckboxType::class, [
-                'label' => 'Trips passed',
+                'label' => 'Passed trips',
                 'required' => false,
             ])
             

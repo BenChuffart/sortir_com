@@ -53,7 +53,7 @@ class TripRepository extends ServiceEntityRepository
        {
             $query = $query 
                 ->andWhere('s.name LIKE :nameTrip')
-                ->setParameter('nameTrip',"%{ $filters -> nameTrip}%");
+                ->setParameter('nameTrip',"%{$filters -> nameTrip}%");
        }
        if(!empty($filters -> startDateTime))
        {
@@ -64,32 +64,32 @@ class TripRepository extends ServiceEntityRepository
        if(!empty($filters -> deadline))
        {
             $query = $query 
-                ->andWhere('s.deadline <= :deadline')
+                ->andWhere('s.deadline >= :deadline')
                 ->setParameter('deadline', $filters -> deadline);
        }
-       if($filters -> tripsOrganized)
+       if(!empty($filters -> tripsOrganized))
        {
             $query = $query 
-                ->andWhere('s.creator = :creator')
-                ->setParameter('creator', $user);
+                ->andWhere('s.creator = :tripsOrganized')
+                ->setParameter('creator', $filters -> tripsOrganized);
        }
        if($filters -> tripsRegisted)
        {
             $query = $query 
                 ->andWhere(':user MEMBER OF s.trips')
-                ->setParameter('tripsRegisted',"%{ $filters -> tripsRegisted}%");
+                ->setParameter('tripsRegisted',"%{$filters -> tripsRegisted}%");
        }
        if($filters -> tripsNotRegisted)
        {
             $query = $query 
                 ->andWhere('s.tripsNotRegisted = :tripsNotRegisted')
-                ->setParameter('tripsNotRegisted',"%{ $filters -> tripsNotRegisted}%");
+                ->setParameter('tripsNotRegisted',"%{$filters -> tripsNotRegisted}%");
        }
        if($filters -> tripsPassed)
        {
             $query = $query 
                 ->andWhere('s.tripsPassed = :tripsPassed')
-                ->setParameter('tripsPassed',"%{ $filters -> tripsPassed}%");
+                ->setParameter('tripsPassed',"%{$filters -> tripsPassed}%");
        }
        
        
