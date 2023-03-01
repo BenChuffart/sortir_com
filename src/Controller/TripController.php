@@ -132,5 +132,5 @@ class TripController extends AbstractController
             "trip" => $showTrip
         ]);
     }
-    
+     
 }
