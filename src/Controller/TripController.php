@@ -119,7 +119,7 @@ class TripController extends AbstractController
     }
     
         /**
-     * @Route("/show_trip/{id}", name="_tripShow")
+     * @Route("/trip/show_trip/{id}", name="_tripShow")
      * @param int $id
      * @param TripRepository $tripRepository
      * @return Response
