@@ -1,4 +1,4 @@
-body{
+/* body{
     background: linear-gradient(#000000, #132135);
     background-attachment: fixed;
     color: #EEE;
@@ -99,4 +99,271 @@ th, td {
 
 td {
     color: #999999;
+}
+*/
+
+/* ----------------------------------------- */
+
+:root {
+    --bg-color:#111111;
+    --font-color:#f1f1f1;
+    --rgba-white:rgba(255, 255, 255, 0.5);
+}
+
+body{
+    background-image:url('https://zupimages.net/up/23/08/5xe6.jpg');
+    background-size:cover;
+    background-attachment: fixed;
+    color: var(--font-color);
+    margin:0;
+}
+
+table{
+    table-layout: fixed;
+    width: 90%;
+    border-collapse: collapse;
+    border: 3px solid #e0e0e0;
+    margin: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+/* ---------- ALL TITLES ---------- */
+
+h1 {
+    text-align: center;
+    background-color: #111;
+    color: #fff;
+    padding: 18px;
+    height: 50px;
+    line-height: 45px;
+    font-size: 25px;
+    letter-spacing: 10px;
+    position: absolute;
+    left: 8%;
+    top: 50%;
+    width: 80%;
+    text-transform:uppercase;
+}
+h2 {
+    text-align: center;
+    color: #fff;
+    padding: 18px;
+    height: 50px;
+    line-height: 45px;
+    font-size: 70px;
+    letter-spacing: 10px;
+    position: absolute;
+    left: 8%;
+    top: 40%;
+    width: 80%;
+    text-transform: uppercase;
+}
+h3 {
+    width:15%;
+    background:#111111;
+    color:#f1f1f1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size:70px;
+    text-align:center;
+    margin:0 auto;
+    line-height:120px;
+}
+h4 {
+    text-align: center;
+    background-color: #111;
+    color: #fff;
+    padding: 18px;
+    height: 50px;
+    line-height: 45px;
+    font-size: 25px;
+    letter-spacing: 10px;
+    position: absolute;
+    left: 8%;
+    top: 10%;
+    width: 80%;
+    text-transform:uppercase;
+}
+h5 {
+
+}
+h6 {
+    color: #111111;
+    font-size: 15px;
+}
+
+/* ---------- NAVBAR ---------- */
+nav {
+    width: 100%;
+    background-color: var(--bg-color);
+    overflow: hidden;
+}
+nav a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+}
+nav a:hover {
+    background-color: #000;
+}
+.active {
+    background-color: #04AA6D;
+}
+@media screen and (max-width: 500px) {
+    nav a {
+        float: none;
+        display: block;
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+/* ---------- FORMULAIRE DU LOG IN ---------- */
+
+.formulary {
+    border: 3px solid #D6D6D6;
+    width: 80%;
+    margin: 0 auto;
+    color: #111111;
+    background-color: #ffffff;
+    padding: 10px;
+}
+form {
+    width:50%;
+    margin: 115px auto;
+    padding:10px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+button:hover {
+    opacity: 0.8;
+}
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+img.avatar {
+    width: 200px;
+    height:200px;
+    border-radius: 100%;
+    object-fit:cover;
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+}
+
+/* ---------- SHOW PROFILE ---------- */
+
+.blockProfile {
+    width: 80%;
+    position: absolute;
+    left: 8%;
+    border-top: 10px #e1e1e1 solid;
+    top: 23%;
+    padding: 18px;
+    background-color: #f1f1f1;
+    border-radius: 0 0 10px 10px;
+}
+
+.edit {
+    background-color: #111111;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+/* ----------------------------------------------- */
+
+/* nav{
+    display: flex;
+} */
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #8C9568;
+}
+
+img {
+    max-width: 100%;
+}
+
+label{
+    display: block;
+}
+
+input{
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+body > .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header img {
+    height: 70px;
+}
+
+main {
+    flex: 1;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+nav li {
+    margin-right: 1rem;
+}
+
+/* ---------- FOOTER ---------- */
+
+.credit {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+    background-color: var(--bg-color);
 }
