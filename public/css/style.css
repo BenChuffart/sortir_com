@@ -354,8 +354,19 @@ input#edit_password_plainPassword {
     top: 26%;
     left: 8%;
     padding: 10px;
+    overflow: hidden;
     position: absolute;
     border-radius: 10px;
+}
+.register:before {
+    position: absolute;
+    content: '\ec40';
+    font-family: 'cappuccicons';
+    font-size: 555px;
+    color: rgba(90,90,90, 0.2);
+    right: -65px;
+    top: 0;
+    /* z-index: -1; */
 }
 div#registration_form > div label {
     font: 15px var(--font-title);
@@ -371,15 +382,16 @@ select#registration_form_campus, input#registration_form_pseudo, input#registrat
     font: 12px var(--font-normal);
     margin: 8px 0;
     display: inline-block;
-    background-color: var(--rgba-white);
+    background-color: rgba(255,255,255,0.8);
     border: none;
     text-transform: lowercase;
     border-radius: 10px;
     box-sizing: border-box;
     position: relative;
 }
-select#registration_form_campus {
-
+#registration_form {
+    position: relative;
+    z-index: 10;
 }
 /* ----------------------------------------------- */
 
