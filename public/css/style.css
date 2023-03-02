@@ -70,7 +70,15 @@ h3 {
     line-height:120px;
 }
 h4 {
-
+    color: var(--font-color);
+    font: 20px var(--font-normal);
+    background-color: var(--bg-color);
+    padding: 10px;
+    border-radius: 10px;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    text-align: center;
+    font-weight: 100;
 }
 h5 {
 
@@ -451,6 +459,53 @@ textarea#trip_informations {
 #registration_form {
     position: relative;
     z-index: 10;
+}
+
+/* ---------- AFFICHAGE D'UNE SORTIE ---------- */
+
+.affichage {
+    width: 80%;
+    position: absolute;
+    margin: 0 25px 0 0;
+    left: 8%;
+    top: 25%;
+    padding: 18px;
+    background-color: var(--font-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.affichage:before {
+    position: absolute;
+    content: '\e9a2';
+    font-family: 'cappuccicons';
+    font-size: 600px;
+    color: rgba(255, 255, 255, 0.8);
+    right: -130px;
+    top: 0;
+}
+.affichage table {
+    width: 100%;
+    margin: 0 0 10px 0;
+    border: none;
+    position: relative;
+}
+.affichage span {
+    font: 12px var(--font-normal);
+    color: var(--font-color);
+    margin: 0 25px 0 0;
+    border-radius: 10px;
+    padding: 7px 70px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 125px;
+    background-color: var(--bg-color);
+    display: inline-block;
+}
+.affichage td {
+    padding: 8px;
+    color: var(--bg-color);
+    text-transform: lowercase;
+    border: 1px rgba(255, 255, 255, 0.8) solid;
 }
 
 /* ----------------------------------------------- */
