@@ -42,19 +42,19 @@ class FiltersType extends AbstractType
                 'required' => false
             ])
             ->add('tripsOrganized', CheckboxType::class, [
-                'label' => 'My created trips',
+                'label' => 'My created trip',
                 'required' => false,
             ])
             ->add('tripsRegisted', CheckboxType::class, [
-                'label' => 'My future trips',
+                'label' => 'My future trip',
                 'required' => false,
             ])
             ->add('tripsNotRegisted', CheckboxType::class, [
-                'label' => 'Other trips',
+                'label' => 'Other trip',
                 'required' => false,
             ])
             ->add('tripsPassed', CheckboxType::class, [
-                'label' => 'Passed trips',
+                'label' => 'Passed trip',
                 'required' => false,
             ])
             

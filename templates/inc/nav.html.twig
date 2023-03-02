@@ -5,8 +5,8 @@
 
         {% if app.user %}
             <li><a href="{{ path('users_profile', {'id': app.user.id}) }}" title="profil">My Profil </a></li>
-            <li><a href="{{ path('trips_list') }}" title="trip list">Trip list</a></li>
-            <li><a href="{{ path('trips_create') }}" title="create trip">Create my Trip</a></li>
+            <li><a href="{{ path('trip_list') }}" title="trip list">Trip list</a></li>
+            <li><a href="{{ path('trip_create') }}" title="create trip">Create my Trip</a></li>
             <li><a href="{{ path('logout') }}" title="Logout">Logout ({{ app.user.pseudo }})</a></li>
 
             {% if is_granted("ROLE_ADMIN") %}
