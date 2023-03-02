@@ -54,7 +54,7 @@ class Trip
     private $informations;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="trip")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="trips")
      */
     private $users;
 
@@ -65,19 +65,19 @@ class Trip
     private $creator;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="trip")
+     * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="trips")
      * @ORM\JoinColumn(nullable=false)
      */
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Place::class, inversedBy="trip")
+     * @ORM\ManyToOne(targetEntity=Place::class, inversedBy="trips")
      * @ORM\JoinColumn(nullable=false)
      */
     private $place;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="trip")
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="trips")
      * @ORM\JoinColumn(nullable=false)
      */
     private $campus;
