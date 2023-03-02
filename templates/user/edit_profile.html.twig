@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Edit my Profile</h1>
+    <h2>Edit my Profile</h2>
+    <div class="edit_profile">
     {{ form_start(editForm) }}
     {{ form_widget(editForm) }}
-        <button type="submit" class="btn">Validate</button>
+    <button type="submit" class="btn">Validate</button>
     {{ form_end(editForm) }}
+    </div>
 {% endblock %}
 
 {% block title %}
     Edit Profile {{ parent() }}
 {% endblock %}
-
