@@ -35,13 +35,12 @@ class TripRepository extends ServiceEntityRepository
     }
 
     // FILTRES TOUT LES TRIPS EN LIEN DE LA RECHERCHE 
-    public function findTrip(Filters $filters,User $user) : array{
+    public function findTrip(Filters $filters, User $user) : array{
 
     
         $query = $this -> createQueryBuilder('s');
-                        //-> addSelect('','s');
-                        //-> Join('s.name','n');
-       // $query -> addOrderBy('s.startDateTime','DESC');
+                       /* -> andWhere ('s.name LIKE :name')
+                        -> setParameter('name',"%{$name}%");*/
 
        if(!empty($filters -> campus))
        {
@@ -52,8 +51,8 @@ class TripRepository extends ServiceEntityRepository
        if(!empty($filters -> nameTrip))
        {
             $query = $query 
-                ->andWhere('s.name LIKE :nameTrip')
-                ->setParameter('nameTrip',"%{$filters -> nameTrip}%");
+                ->andWhere('s.name LIKE :name')
+                ->setParameter('name',"%{ $filters -> nameTrip}%");
        }
        if(!empty($filters -> startDateTime))
        {
@@ -64,37 +63,34 @@ class TripRepository extends ServiceEntityRepository
        if(!empty($filters -> deadline))
        {
             $query = $query 
-                ->andWhere('s.deadline >= :deadline')
+                ->andWhere('s.deadline <= :deadline')
                 ->setParameter('deadline', $filters -> deadline);
        }
-       if(!empty($filters -> tripsOrganized))
+       if($filters -> tripsOrganized)
        {
             $query = $query 
-                ->andWhere('s.creator = :tripsOrganized')
-                ->setParameter('creator', $filters -> tripsOrganized);
+                ->andWhere('s.creator = :creator')
+                ->setParameter('creator', $user);
        }
        if($filters -> tripsRegisted)
        {
             $query = $query 
-                ->andWhere(':user MEMBER OF s.trips')
-                ->setParameter('tripsRegisted',"%{$filters -> tripsRegisted}%");
+                ->andWhere(':user MEMBER OF s.users')
+                ->setParameter('user', $user);
        }
        if($filters -> tripsNotRegisted)
        {
             $query = $query 
-                ->andWhere('s.tripsNotRegisted = :tripsNotRegisted')
-                ->setParameter('tripsNotRegisted',"%{$filters -> tripsNotRegisted}%");
+                ->andWhere('s.tripsNotRegisted NOT MEMBER OF s.users')
+                ->setParameter('tripsNotRegisted',$user);
        }
        if($filters -> tripsPassed)
        {
             $query = $query 
-                ->andWhere('s.tripsPassed = :tripsPassed')
-                ->setParameter('tripsPassed',"%{$filters -> tripsPassed}%");
+                ->andWhere('s.status = :status')
+                ->setParameter('status','');
        }
        
-       
-       
-        //$paginator = new Paginator($query);
         return $query ->getQuery() -> getResult();
 
     }
