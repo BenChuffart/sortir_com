@@ -340,13 +340,11 @@ img.avatar {
     top: -100px;
     /* z-index: -1; */
 }
-
 .blockProfile table {
     width: 100%;
     margin: 0 0 10px 0;
     border: none;
 }
-
 .blockProfile span {
     font: 12px var(--font-normal);
     color: var(--font-color);
@@ -359,8 +357,6 @@ img.avatar {
     background-color: var(--bg-color);
     display: inline-block;
 }
-
-
 .blockProfile td {
     padding: 8px;
     color: var(--bg-color);
@@ -368,8 +364,54 @@ img.avatar {
     border: 1px rgba(255, 255, 255, 0.8) solid;
 }
 
+/* ---------- PROFILE MODIFICATION ---------- */
 
-
+#edit{
+    background-color: var(--font-color);
+    width: 100%;
+    text-align: center;
+    color: var(--bg-color);
+    padding: 10px;
+    margin: 40px 0 0px 0;
+    text-align: left;
+    font: 13px var(--font-normal);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+#edit:before {
+    position: absolute;
+    content: '\ea3e';
+    font-family: 'cappuccicons';
+    font-size: 550px;
+    color: rgba(90,90,90, 0.2);
+    right: -105px;
+    top: 20px;
+    z-index: 0;
+}
+#edit > div {
+    padding: 10px 0;
+}
+#edit > div label {
+    font: 15px var(--font-title);
+    letter-spacing: 2px;
+    border-bottom: 1px var(--bg-color) solid;
+    padding: 0 10px;
+    height: 25px;
+}
+input#edit_pseudo, input#edit_firstname, input#edit_lastname, input#edit_email, input#edit_phone {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    background-color: var(--rgba-white);
+    border: none;
+    text-transform: lowercase;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
 /* ----------------------------------------------- */
 
 
