@@ -412,6 +412,44 @@ input#edit_pseudo, input#edit_firstname, input#edit_lastname, input#edit_email, 
     box-sizing: border-box;
     position: relative;
 }
+
+/* ---------- PASSWORD MODIFICATION ---------- */
+#edit_password {
+    background-color: var(--font-color);
+    width: 100%;
+    text-align: center;
+    color: var(--bg-color);
+    padding: 10px;
+    margin: 40px 0 0px 0;
+    text-align: left;
+    font: 13px var(--font-normal);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+#edit_password > div {
+    padding: 10px 0;
+}
+#edit_password > div label {
+    font: 15px var(--font-title);
+    letter-spacing: 2px;
+    border-bottom: 1px var(--bg-color) solid;
+    padding: 0 10px;
+    height: 25px;
+}
+input#edit_password_plainPassword {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    background-color: var(--rgba-white);
+    border: none;
+    text-transform: lowercase;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
 /* ----------------------------------------------- */
 
 
