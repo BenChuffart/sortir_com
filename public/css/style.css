@@ -508,6 +508,18 @@ textarea#trip_informations {
     border: 1px rgba(255, 255, 255, 0.8) solid;
 }
 
+/* ---------- EDITER UNE SORTIE ---------- */
+
+.edit_trip {
+    width: 80%;
+    position: absolute;
+    background-color: var(--font-color);
+    padding: 10px;
+    border-radius: 10px;
+    top: 28%;
+    left: 8%;
+}
+
 /* ----------------------------------------------- */
 
 
