@@ -216,7 +216,7 @@ img.avatar {
     position: absolute;
     margin: 0 25px 0 0;
     left: 8%;
-    top: 40%;
+    top: 32%;
     padding: 18px;
     background-color: var(--font-color);
     border-radius: 10px;
@@ -257,10 +257,14 @@ img.avatar {
 }
 
 /* ---------- MODIFICATION PROFIL ---------- */
-
+.edit_profile, .edit_psw {
+    width: 82%;
+    position: absolute;
+    top: 24%;
+    left: 8%;
+}
 #edit{
     background-color: var(--font-color);
-    width: 100%;
     text-align: center;
     color: var(--bg-color);
     padding: 10px;
@@ -308,7 +312,6 @@ input#edit_pseudo, input#edit_firstname, input#edit_lastname, input#edit_email, 
 /* ---------- MODIFICATION MOT DE PASSE ---------- */
 #edit_password {
     background-color: var(--font-color);
-    width: 100%;
     text-align: center;
     color: var(--bg-color);
     padding: 10px;
