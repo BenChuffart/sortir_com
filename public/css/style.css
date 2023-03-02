@@ -194,7 +194,7 @@ a{
 }
 
 a:hover{
-    color: #8C9568;
+    color: var(--font-color);
 }
 
 p {
@@ -275,10 +275,14 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
+    position: relative;
+    border-radius: 10px;
     width: 100%;
+    transition-duration: 0.5s;
 }
 button:hover {
-    opacity: 0.8;
+    background-color:#315E7D;
+    transition-duration: 0.5s;
 }
 .imgcontainer {
     text-align: center;
@@ -364,22 +368,9 @@ img.avatar {
     border: 1px rgba(255, 255, 255, 0.8) solid;
 }
 
-.edit {
-    background-color: #111111;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    position:relative;
-}
+
 
 /* ----------------------------------------------- */
-
-/* nav{
-    display: flex;
-} */
-
 
 
 img {
