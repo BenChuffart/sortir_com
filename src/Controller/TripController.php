@@ -9,20 +9,18 @@ use App\Entity\User;
 use App\Form\FiltersType;
 use App\Repository\TripRepository;
 use App\Repository\StatusRepository;
-
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
-/**
- * @Route("/trip", name="trip")
- */
+
 class TripController extends AbstractController
 {
     /**
-     * @Route("/create", name="_create")
+     * @Route("/trip/create", name="trip_create")
      */
     public function create(Request $request, EntityManagerInterface $entityManager, StatusRepository $statusRepository): Response
     {
@@ -61,97 +59,99 @@ class TripController extends AbstractController
 
 
     /**
-     * @Route("/list", name="_list")
+     * @Route("/trip", name="trip_view")
      */
-    public function showList (TripRepository $tripRepository, Request $request): Response
+    public function view (TripRepository $tripRepository, Request $request): Response
     {
-        $filters = new Filters();
-        /** @var User $user */
-        $user = $this->getUser();
-        $filters -> campus = $user -> getCampus();
-        $filterForm = $this -> createform(FiltersType::class, $filters);
-        $filterForm -> handleRequest($request);
-        $search = $tripRepository -> findTrip($filters, $user);
+        $data = new Filters();
+        $data -> campus = $this -> getUser()-> getCampus();
+        $filterform = $this -> createform(FiltersType::class, $data);
+        $filterform -> handleRequest($request);
+
+        $search = $tripRepository -> findTrip($data, $this-> getUser());
         
     
-        return $this->render('trip/list.html.twig', [
-            'filterForm' => $filterForm -> createView(),
+        return $this->render('trip/view.html.twig', [
+            'filterform' => $filterform -> createView(),
             'trips' => $search
         ]);
           
     }
 
     /**
-     * @Route("/edit/{id}", name="_edit")
+     * @Route("/trip/editTrip/{id}", name="trip_editTrip")
      */
-    public function edit(Trip $trip,User $user)
+    public function editTrip(int $id, Trip $trip, Request $request, TripRepository $tripRepository)
     {
         if($this -> isGranted('POST_EDIT',$trip))
         {
-            
-            return $this -> redirectToRoute('trip_details');
+            $trip = $tripRepository -> find($trip->getId());
+            $form = $this -> createform(TripType::class,$trip);
+            $form->handleRequest($request);
+
+            return $this -> render('trip/edit.html.twig', [
+                'trip' => $trip,
+                'editForm' => $form ->createView()
+            ]);
         }
 
         $this -> addFlash('Denied', 'Accès refusé !');
-        return $this->render('trip/edit.html.twig');
+        return $this->render('trip/view.html.twig');
     }
 
      /**
-     * @Route("/delete/{id}", name="_delete")
+     * @Route("/trip/deletTrip/{id}", name="trip_deleteTrip")
      */
-    public function delete(int $id, ManagerRegistry $managerRegistry, Trip $trip)
+    public function deleteTrip(int $id,ManagerRegistry $managerRegistry,Trip $trip)
     {
         if($this -> isGranted('POST_DELETE',$trip))
         {
             $em = $this-> $managerRegistry-> getRepository(Trip::class);
             $em -> remove($trip);
             $em->flush();
-            return $this -> render('trip/delete.html.twig',[
+            return $this -> render('trip/view.html.twig',[
             ]); 
         }
         else{
         $this -> addFlash('Denied', 'Accès refusé !');
-        return $this->render('trip/list.html.twig');}
+        return $this->render('trip/view.html.twig');}
     }
 
     /**
-     * @Route("/details/{id}", name="_details")
+     * @Route("/trip/showTrip/{id}", name="trip_showTrip", methods={"POST"})
      */
-    // , methods={"POST"}
-    public function details(int $id, TripRepository $tripRepository) :Response
+    public function showTrip(int $id,TripRepository $tripRepository) :Response
     {
         $showTrip = $tripRepository-> find($id);
-        return $this-> render('trip/details.html.twig',[
+        return $this-> render('trip/showTrip.html.twig',[
             "trip" => $showTrip
         ]);
     }
 
      /**
-     * @Route("/trip/{id}/register", name="_register", methods={"POST"})
+     * @Route("/trip/{id}/registerTrip", name="trip_register", methods={"POST"})
      */
     public function registerTrip(int $id, ManagerRegistry $managerRegistry, Trip $trip) :Response
     {
-        /** @var User $user */
-        $user = $this-> getUser();
-        $trip -> addUser($user);
-        $user -> $managerRegistry -> persist($user);
-        $this -> $managerRegistry -> flush();
+            $user = $this-> getUser();
+            $trip -> addUser($user);
+            $user -> $managerRegistry -> persist($user);
+            $this -> $managerRegistry -> flush();
            
             
-        return $this -> redirectToRoute('trip_details');
+            return $this -> redirectToRoute('trip/view.html.twig');
     }
 
      /**
-     * @Route("/trip/{id}/withdraw", name="withdraw")
+     * @Route("/trip/{id}/renounceTrip", name="trip_renounceTrip")
      */
     public function renounceTrip(int $id,ManagerRegistry $managerRegistry,Trip $trip) :Response
     {
-        /** @var User $user */
         $user = $this -> getUser();
         $trip -> removeUser($user);
         $this -> $managerRegistry -> persist($trip);
         $this  -> $managerRegistry -> flush();
        
-        return $this -> redirectToRoute('trip_list');
+        return $this -> redirectToRoute('trip/view.html.twig');
     }
 }
