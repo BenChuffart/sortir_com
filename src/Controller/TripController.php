@@ -65,16 +65,18 @@ class TripController extends AbstractController
      */
     public function showList (TripRepository $tripRepository, Request $request): Response
     {
-        $data = new Filters();
-        $data -> campus = $this -> getUser()-> getCampus();
-        $filterform = $this -> createform(FiltersType::class, $data);
-        $filterform -> handleRequest($request);
-        $search = $tripRepository -> findTrip($data, $this-> getUser());
+        $filters = new Filters();
+        /** @var User $user */
+        $user = $this->getUser();
+        $filters -> campus = $user -> getCampus();
+        $filterForm = $this -> createform(FiltersType::class, $filters);
+        $filterForm -> handleRequest($request);
+        $search = $tripRepository -> findTrip($filters, $user);
         
     
         return $this->render('trip/list.html.twig', [
-            'filterform' => $filterform -> createView(),
-            'trip' => $search
+            'filterForm' => $filterForm -> createView(),
+            'trips' => $search
         ]);
           
     }
@@ -113,8 +115,9 @@ class TripController extends AbstractController
     }
 
     /**
-     * @Route("/details/{id}", name="_details", methods={"POST"})
+     * @Route("/details/{id}", name="_details")
      */
+    // , methods={"POST"}
     public function details(int $id, TripRepository $tripRepository) :Response
     {
         $showTrip = $tripRepository-> find($id);
@@ -128,13 +131,14 @@ class TripController extends AbstractController
      */
     public function registerTrip(int $id, ManagerRegistry $managerRegistry, Trip $trip) :Response
     {
-            $user = $this-> getUser();
-            $trip -> addUser($user);
-            $user -> $managerRegistry -> persist($user);
-            $this -> $managerRegistry -> flush();
+        /** @var User $user */
+        $user = $this-> getUser();
+        $trip -> addUser($user);
+        $user -> $managerRegistry -> persist($user);
+        $this -> $managerRegistry -> flush();
            
             
-            return $this -> redirectToRoute('trip_details');
+        return $this -> redirectToRoute('trip_details');
     }
 
      /**
@@ -142,6 +146,7 @@ class TripController extends AbstractController
      */
     public function renounceTrip(int $id,ManagerRegistry $managerRegistry,Trip $trip) :Response
     {
+        /** @var User $user */
         $user = $this -> getUser();
         $trip -> removeUser($user);
         $this -> $managerRegistry -> persist($trip);
