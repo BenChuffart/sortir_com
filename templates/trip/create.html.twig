@@ -2,19 +2,19 @@
 
 {% block body%}
 
-    <h1>Create your trip :</h1>
-    <div> 
-    {{ form_start(tripForm) }}
-    
-    {{ form_widget(tripForm) }}
+    <h2>Create your trip :</h2>
+    <div class="create">
+        {{ form_start(tripForm) }}
 
-    <button type="submit"> Create !</button>
+        {{ form_widget(tripForm) }}
 
-    {{ form_end(tripForm) }}
-    </div> 
+        <button type="submit"> Create !</button>
+
+        {{ form_end(tripForm) }}
+    </div>
 
 {% endblock %}
 
-{% block title%} 
-Create a new trip ! 
+{% block title%}
+    Create a new trip !
 {% endblock %}
