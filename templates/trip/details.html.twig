@@ -17,7 +17,7 @@
     <h6>Status :</h6>
     <div class="trip_element">{{ trip.status }}</div>
     <h6>Place :</h6>
-    <div class="trip_element">{{ trip.place }}</div>
+    <div class="trip_element">{{ trip.place.name }}</div>
     <h6>Campus :</h6>
     <div class="trip_element">{{ trip.campus }}</div>
 
@@ -41,5 +41,6 @@
 
         </tbody>
     </table>
+    </div>
 
 {% endblock %}
