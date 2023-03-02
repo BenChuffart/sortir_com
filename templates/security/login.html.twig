@@ -10,7 +10,7 @@
 
         <div class="formulary">
             <div class="imgcontainer">
-                <img src="https://zupimages.net/up/23/08/vbx8.jpg" alt="Avatar" class="avatar">
+                <img src="https://zupimages.net/up/23/09/x7xi.jpg" alt="Avatar" class="avatar">
             </div>
 
             <div class="sign">please, sign in</div>
@@ -20,13 +20,13 @@
             <label for="inputPassword">Password</label>
             <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-            <input type="hidden" name="_csrf_token"
-                   value="{{ csrf_token('authenticate') }}">
-
-            <div class="checkbox mb-3">
+            <div class="remember_me">
                 <label>
                     <input type="checkbox" name="_remember_me"> Remember me
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}">
                 </label>
+
             </div>
 
             <button class="btn btn-lg btn-primary" type="submit">
