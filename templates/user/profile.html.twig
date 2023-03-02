@@ -1,22 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{{ user.pseudo }}</h1>
-    <h2>Firstname :</h2>
-    <div class="user_element">{{ user.firstname }}</div>
-    <h2>Lastname :</h2>
-    <div class="user_element">{{ user.lastname }}</div>
-    <h2>Email :</h2>
-    <div class="user_element">{{ user.email }}</div>
-    <h2>Phone :</h2>
-    <div class="user_element">{{ user.phone }}</div>
-    <h2>Campus :</h2>
-    <div class="user_element">{{ user.campus }} </div>
+    <h2>{{ app.user.firstname }} {{ app.user.lastname }}</h2>
+
+    <div class="blockProfile">
+    <table>
+        <tr>
+            <td><span>Nickname</span> {{ user.pseudo }}</td>
+        </tr>
+        <tr>
+            <td><span>Firstname</span> {{ user.firstname }}</td>
+        </tr>
+        <tr>
+            <td><span>Lastname</span> {{ user.lastname }}</td>
+        </tr>
+        <tr>
+            <td><span>Email</span> {{ user.email }}</td>
+        </tr>
+        <tr>
+            <td><span>Phone</span> {{ user.phone }}</td>
+        </tr>
+        <tr>
+            <td><span>Campus</span> {{ user.campus }}</td>
+        </tr>
+    </table>
+
     {% if user == app.user %}
-        <div class="edit"><a href="{{ path('users_editProfile', {'id': app.user.id}) }}" title="editProfile">Edit</a></div>
-        <div class="edit"><a href="{{ path('users_editPassword', {'id': app.user.id}) }}" title="editPassword">Change Password</a></div>
+        <div class="edit">
+           <button><a href="{{ path('users_editProfile', {'id': app.user.id}) }}" title="editProfile">Edit</a></button>
+           <button><a href="{{ path('users_editPassword', {'id': app.user.id}) }}" title="editPassword">Change Password</a>
+        </div>
     {% endif %}
+    </div>
 {% endblock %}
 
 {% block title %} My Profile {{ parent() }} {% endblock %}
-
