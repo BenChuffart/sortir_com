@@ -465,23 +465,13 @@ textarea#trip_informations {
 
 .affichage {
     width: 80%;
-    position: absolute;
-    margin: 0 25px 0 0;
+    margin: 160px auto 25px auto;
     left: 8%;
     top: 25%;
     padding: 18px;
     background-color: var(--font-color);
     border-radius: 10px;
     overflow: hidden;
-}
-.affichage:before {
-    position: absolute;
-    content: '\e9a2';
-    font-family: 'cappuccicons';
-    font-size: 600px;
-    color: rgba(255, 255, 255, 0.8);
-    right: -130px;
-    top: 0;
 }
 .affichage table {
     width: 100%;
