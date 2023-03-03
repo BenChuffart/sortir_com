@@ -24,13 +24,12 @@
             <td><span>Campus</span> {{ user.campus }}</td>
         </tr>
     </table>
-
-    {% if user == app.user %}
+        {% if is_granted("PROFILE_EDIT", user) %}
         <div class="edit">
-           <button><a href="{{ path('users_editProfile', {'id': app.user.id}) }}" title="editProfile">Edit</a></button>
-           <button><a href="{{ path('users_editPassword', {'id': app.user.id}) }}" title="editPassword">Change Password</a>
+           <a href="{{ path('users_editProfile', {'id': user.id}) }}" title="Edit your profile">Edit</a>
+           <a href="{{ path('users_editPassword', {'id': user.id}) }}" title="Change your Password" >Change Password</a>
         </div>
-    {% endif %}
+        {% endif %}
     </div>
 {% endblock %}
 

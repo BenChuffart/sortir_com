@@ -264,6 +264,12 @@ img.avatar {
     border: 1px rgba(255, 255, 255, 0.8) solid;
 }
 
+/* bidouille de Ben pour afficher les liens de modif du profil et du mot de passe */
+
+.blockProfile a{
+    color: #315E7D;
+}
+
 /* ---------- MODIFICATION PROFIL ---------- */
 .edit_profile, .edit_psw {
     width: 82%;
