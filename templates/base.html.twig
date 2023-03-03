@@ -9,19 +9,20 @@
     <link rel ="icon" href=" {{ asset('img/eniLogo.png')}}">
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="//pull.cappuccicons.com/cpf.js"></script>
 
 </head>
 <body>
-    <div class = "container">
-        <header>
-         {% include("inc/nav.html.twig")%}   
-        </header>
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-        <footer>
-            <div>&copy; {{ "now"|date("Y") }} Sortir.com</div>
-        </footer>   
-    </div>
+<div class = "container">
+    <header>
+        {% include("inc/nav.html.twig")%}
+    </header>
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+    <footer>
+        <div class="credit">&copy; {{ "now"|date("Y") }} Sortir.com - Benjamin, Thibaud, Charlyne</div>
+    </footer>
+</div>
 </body>
 </html>
