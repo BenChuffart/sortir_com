@@ -504,6 +504,70 @@ textarea#trip_informations {
     border: 1px rgba(255, 255, 255, 0.8) solid;
 }
 
+/* ---------- AFFICHAGE D'UNE SORTIE ---------- */
+
+.affichage {
+    width: 80%;
+    margin: 160px auto 25px auto;
+    left: 8%;
+    top: 25%;
+    padding: 18px;
+    background-color: var(--font-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.affichage table {
+    width: 100%;
+    margin: 0 0 10px 0;
+    border: none;
+    position: relative;
+}
+.affichage span {
+    font: 12px var(--font-normal);
+    color: var(--font-color);
+    margin: 0 25px 0 0;
+    border-radius: 10px;
+    padding: 7px 70px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 125px;
+    background-color: var(--bg-color);
+    display: inline-block;
+}
+.affichage td {
+    padding: 8px;
+    color: var(--bg-color);
+    text-transform: lowercase;
+    border: 1px rgba(255, 255, 255, 0.8) solid;
+}
+
+select#campus, input#nameTrip, input#startDateTime, input#deadline {
+    width: 100%;
+    padding: 7px;
+    font: 12px var(--font-normal);
+    margin: 8px 0;
+    display: inline-block;
+    background-color: rgba(255,255,255,0.8);
+    border: none;
+    text-transform: lowercase;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+input#tripsOrganized, input#tripsRegisted, input#tripsNotRegisted, input#tripsPassed {
+    width: 100%;
+    padding: 7px;
+    font: 12px var(--font-normal);
+    margin: 0 auto;
+    display: inline-block;
+    border: none;
+    text-transform: lowercase;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
 /* ---------- EDITER UNE SORTIE ---------- */
 
 .edit_trip {
