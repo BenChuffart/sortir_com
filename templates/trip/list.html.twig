@@ -3,11 +3,11 @@
 {% block title %}Hello to your new trip !{% endblock %}
 
 {% block body %}
-    <h1> All the trip ! </h1>
 
-    <div id="info">
-        <h3> Date : {{ "now"|date('d/m/Y')}}</h3>
-        <h3> User : {{ app.user.firstname }}</h3>
+    <div class="infoTrip">
+        <h5> All the trip ! </h5>
+        <h6> Date : {{ "now"|date('d/m/Y')}}</h6>
+        <h6> User : {{ app.user.firstname }}</h6>
     </div>
 
     <div id ="filters" class="container">
