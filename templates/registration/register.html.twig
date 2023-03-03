@@ -3,10 +3,11 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
+    <h2>Register</h2>
+<div class="register">
     {{ form_start(registrationForm) }}
     {{ form_widget(registrationForm) }}
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+</div>
 {% endblock %}

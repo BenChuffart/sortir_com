@@ -70,7 +70,15 @@ h3 {
     line-height:120px;
 }
 h4 {
-
+    color: var(--font-color);
+    font: 20px var(--font-normal);
+    background-color: var(--bg-color);
+    padding: 10px;
+    border-radius: 10px;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    text-align: center;
+    font-weight: 100;
 }
 h5 {
 
@@ -209,14 +217,14 @@ img.avatar {
     text-transform: uppercase;
 }
 
-/* ---------- SHOW PROFILE ---------- */
+/* ---------- VOIR PROFIL ---------- */
 
 .blockProfile {
     width: 80%;
     position: absolute;
     margin: 0 25px 0 0;
     left: 8%;
-    top: 40%;
+    top: 32%;
     padding: 18px;
     background-color: var(--font-color);
     border-radius: 10px;
@@ -256,11 +264,15 @@ img.avatar {
     border: 1px rgba(255, 255, 255, 0.8) solid;
 }
 
-/* ---------- PROFILE MODIFICATION ---------- */
-
+/* ---------- MODIFICATION PROFIL ---------- */
+.edit_profile, .edit_psw {
+    width: 82%;
+    position: absolute;
+    top: 24%;
+    left: 8%;
+}
 #edit{
     background-color: var(--font-color);
-    width: 100%;
     text-align: center;
     color: var(--bg-color);
     padding: 10px;
@@ -305,10 +317,9 @@ input#edit_pseudo, input#edit_firstname, input#edit_lastname, input#edit_email, 
     position: relative;
 }
 
-/* ---------- PASSWORD MODIFICATION ---------- */
+/* ---------- MODIFICATION MOT DE PASSE ---------- */
 #edit_password {
     background-color: var(--font-color);
-    width: 100%;
     text-align: center;
     color: var(--bg-color);
     padding: 10px;
@@ -342,6 +353,163 @@ input#edit_password_plainPassword {
     box-sizing: border-box;
     position: relative;
 }
+
+/* ---------- FORMULAIRE D'INSCRIPTION ---------- */
+
+.register {
+    width: 80%;
+    background-color: var(--font-color);
+    top: 26%;
+    left: 8%;
+    padding: 10px;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 10px;
+}
+.register:before {
+    position: absolute;
+    content: '\ec40';
+    font-family: 'cappuccicons';
+    font-size: 555px;
+    color: rgba(90,90,90, 0.2);
+    right: -65px;
+    top: 0;
+    /* z-index: -1; */
+}
+div#registration_form > div label {
+    font: 15px var(--font-title);
+    letter-spacing: 2px;
+    color:var(--bg-color);
+    border-bottom: 1px var(--bg-color) solid;
+    padding: 0 10px;
+    height: 25px;
+}
+select#registration_form_campus, input#registration_form_pseudo, input#registration_form_email, input#registration_form_firstname, input#registration_form_lastname, input#registration_form_phone, input#registration_form_plainPassword {
+    width: 100%;
+    padding: 7px;
+    font: 12px var(--font-normal);
+    margin: 8px 0;
+    display: inline-block;
+    background-color: rgba(255,255,255,0.8);
+    border: none;
+    text-transform: lowercase;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+#registration_form {
+    position: relative;
+    z-index: 10;
+}
+
+/* ---------- CRÉER UNE SORTIE ---------- */
+.create {
+    width: 80%;
+    position: absolute;
+    top: 27%;
+    left: 9%;
+    overflow: hidden;
+    background-color: var(--font-color);
+    border-radius: 10px;
+    padding: 10px;
+}
+#trip {
+    position:relative;
+}
+.create:before {
+    position: absolute;
+    content: '\eca9';
+    font-family: 'cappuccicons';
+    font-size: 555px;
+    color: rgba(90,90,90, 0.2);
+    right: -65px;
+    top: 0;
+    /* z-index: -1; */
+}
+label.required, label.trip_informations {
+    font: 15px var(--font-title);
+    letter-spacing: 2px;
+    color:var(--bg-color);
+    border-bottom: 1px var(--bg-color) solid;
+    padding: 0 10px;
+    height: 25px;
+}
+select#trip_place, input#trip_name, input#trip_startDateTime, input#trip_duration, input#trip_deadline, input#trip_maxRegistration {
+    width: 100%;
+    padding: 7px;
+    font: 12px var(--font-normal);
+    margin: 8px 0;
+    display: inline-block;
+    background-color: rgba(255,255,255,0.8);
+    border: none;
+    text-transform: lowercase;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+textarea#trip_informations {
+    width: 1095px;
+    height: 60px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: none;
+    overflow: auto;
+}
+
+#registration_form {
+    position: relative;
+    z-index: 10;
+}
+
+/* ---------- AFFICHAGE D'UNE SORTIE ---------- */
+
+.affichage {
+    width: 80%;
+    margin: 160px auto 25px auto;
+    left: 8%;
+    top: 25%;
+    padding: 18px;
+    background-color: var(--font-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.affichage table {
+    width: 100%;
+    margin: 0 0 10px 0;
+    border: none;
+    position: relative;
+}
+.affichage span {
+    font: 12px var(--font-normal);
+    color: var(--font-color);
+    margin: 0 25px 0 0;
+    border-radius: 10px;
+    padding: 7px 70px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 125px;
+    background-color: var(--bg-color);
+    display: inline-block;
+}
+.affichage td {
+    padding: 8px;
+    color: var(--bg-color);
+    text-transform: lowercase;
+    border: 1px rgba(255, 255, 255, 0.8) solid;
+}
+
+/* ---------- EDITER UNE SORTIE ---------- */
+
+.edit_trip {
+    width: 80%;
+    position: absolute;
+    background-color: var(--font-color);
+    padding: 10px;
+    border-radius: 10px;
+    top: 28%;
+    left: 8%;
+}
+
 /* ----------------------------------------------- */
 
 
@@ -351,6 +519,7 @@ img {
 
 label{
     display: block;
+    color:var(--bg-color);
 }
 
 input{

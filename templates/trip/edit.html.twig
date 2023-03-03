@@ -2,11 +2,12 @@
 
 {% block body %}
     <h2> Edit "{{ trip.name }}" </h2>
+    <div class="edit_trip">
     {{ form_start(editForm) }}
     {{ form_widget(editForm) }}
-       <button type="submit" class="btn">Validate</button>
+    <button type="submit" class="btn">Validate</button>
     {{ form_end(editForm) }}
+    </div>
 {% endblock %}
 
 {% block title %}Edit "{{ trip.name }}"{% endblock %}
-
