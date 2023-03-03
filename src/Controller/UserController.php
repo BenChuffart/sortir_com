@@ -31,7 +31,7 @@ class UserController extends AbstractController
     /**
      * @Route("/edit_profile/{id}", name="_editProfile")
      */
-    public function editMyProfile(int $id,Request $request,EntityManagerInterface $entityManager, UserRepository $userRepository): Response
+    public function edit(int $id, Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
         $user = $userRepository->find($id);
         $editForm = $this->createForm(UserEditType::class, $user);
@@ -56,7 +56,7 @@ class UserController extends AbstractController
     /**
      * @Route("/edit_password/{id}", name="_editPassword")
      */
-    public function editPassword(int $id,Request $request,EntityManagerInterface $entityManager, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function changePwd(int $id, Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $user = $userRepository->find($id);
         $editForm = $this->createForm(EditPasswordType::class, $user);

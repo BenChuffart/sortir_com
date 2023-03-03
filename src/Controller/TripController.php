@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Trip;
+use App\Form\TripEditType;
 use App\Form\TripType;
 use App\Data\Filters;
 use App\Entity\User;
@@ -88,12 +89,11 @@ class TripController extends AbstractController
     {
         if($this -> isGranted('POST_EDIT',$trip))
         {
-            
-            return $this -> redirectToRoute('trip_details');
+            return $this -> redirectToRoute('trip_edit');
         }
 
         $this -> addFlash('Denied', 'Accès refusé !');
-        return $this->render('trip/edit.html.twig');
+        return $this->render('trip/edit.html.twig', []);
     }
 
      /**
@@ -120,9 +120,9 @@ class TripController extends AbstractController
     // , methods={"POST"}
     public function details(int $id, TripRepository $tripRepository) :Response
     {
-        $showTrip = $tripRepository-> find($id);
+        $trip = $tripRepository-> find($id);
         return $this-> render('trip/details.html.twig',[
-            "trip" => $showTrip
+            "trip" => $trip
         ]);
     }
 
