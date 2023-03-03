@@ -14,17 +14,30 @@ body{
     margin:0;
 }
 
-table{
+/*table{
     table-layout: fixed;
     width: 90%;
     border-collapse: collapse;
     border: 3px solid #e0e0e0;
     margin: 20px;
-}
+} */
 
 th, td {
     text-align: left;
     padding: 8px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #222;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 /* ---------- ALL TITLES ---------- */
@@ -81,11 +94,21 @@ h4 {
     font-weight: 100;
 }
 h5 {
-
+    text-align: center;
+    border-bottom: 2px solid #111;
+    font: 50px var(--font-title);
+    color: #fff;
+    letter-spacing: 10px;
+    text-transform: uppercase;
 }
 h6 {
-    color: #111111;
-    font-size: 15px;
+    color: var(--font-color);
+    background-color: #7DACCC;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    margin: 10px -10px;
+    font: 15px var(--font-normal);
 }
 
 /* ---------- LINKS & TEXT FORM ---------- */
@@ -264,33 +287,26 @@ img.avatar {
     border: 1px rgba(255, 255, 255, 0.8) solid;
 }
 
-/* bidouille de Ben pour afficher les liens de modif du profil et du mot de passe */
-
-.blockProfile a{
-    color: #315E7D;
-}
-
 /* ---------- MODIFICATION PROFIL ---------- */
-.edit_profile, .edit_psw {
+.edit_profile {
     width: 82%;
     position: absolute;
     top: 24%;
     left: 8%;
 }
-#edit{
+#user_edit{
     background-color: var(--font-color);
-    text-align: center;
+    text-align: left;
     color: var(--bg-color);
     padding: 10px;
-    margin: 40px 0 0px 0;
-    text-align: left;
+    margin: 40px 0 0 0;
     font: 13px var(--font-normal);
     text-transform: uppercase;
     position: relative;
     overflow: hidden;
     border-radius: 10px;
 }
-#edit:before {
+#user_edit:before {
     position: absolute;
     content: '\ea3e';
     font-family: 'cappuccicons';
@@ -300,17 +316,17 @@ img.avatar {
     top: 20px;
     z-index: 0;
 }
-#edit > div {
+#user_edit > div {
     padding: 10px 0;
 }
-#edit > div label {
+#user_edit > div label {
     font: 15px var(--font-title);
     letter-spacing: 2px;
     border-bottom: 1px var(--bg-color) solid;
     padding: 0 10px;
     height: 25px;
 }
-input#edit_pseudo, input#edit_firstname, input#edit_lastname, input#edit_email, input#edit_phone {
+input#user_edit_pseudo, input#user_edit_firstname, input#user_edit_lastname, input#user_edit_email, input#user_edit_phone {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -326,10 +342,9 @@ input#edit_pseudo, input#edit_firstname, input#edit_lastname, input#edit_email, 
 /* ---------- MODIFICATION MOT DE PASSE ---------- */
 #edit_password {
     background-color: var(--font-color);
-    text-align: center;
     color: var(--bg-color);
     padding: 10px;
-    margin: 40px 0 0px 0;
+    margin: 40px 0 0 0;
     text-align: left;
     font: 13px var(--font-normal);
     text-transform: uppercase;
@@ -504,43 +519,6 @@ textarea#trip_informations {
     border: 1px rgba(255, 255, 255, 0.8) solid;
 }
 
-/* ---------- AFFICHAGE D'UNE SORTIE ---------- */
-
-.affichage {
-    width: 80%;
-    margin: 160px auto 25px auto;
-    left: 8%;
-    top: 25%;
-    padding: 18px;
-    background-color: var(--font-color);
-    border-radius: 10px;
-    overflow: hidden;
-}
-.affichage table {
-    width: 100%;
-    margin: 0 0 10px 0;
-    border: none;
-    position: relative;
-}
-.affichage span {
-    font: 12px var(--font-normal);
-    color: var(--font-color);
-    margin: 0 25px 0 0;
-    border-radius: 10px;
-    padding: 7px 70px;
-    text-transform: uppercase;
-    text-align: center;
-    width: 125px;
-    background-color: var(--bg-color);
-    display: inline-block;
-}
-.affichage td {
-    padding: 8px;
-    color: var(--bg-color);
-    text-transform: lowercase;
-    border: 1px rgba(255, 255, 255, 0.8) solid;
-}
-
 select#campus, input#nameTrip, input#startDateTime, input#deadline {
     width: 100%;
     padding: 7px;
@@ -580,6 +558,29 @@ input#tripsOrganized, input#tripsRegisted, input#tripsNotRegisted, input#tripsPa
     left: 8%;
 }
 
+/* ---------- LISTE DES SORTIES ---------- */
+
+.infoTrip {
+    width: 80%;
+    margin: 10px auto;
+}
+#filters {
+    width: 80%;
+    margin: 0 auto;
+    background-color: var(--font-color);
+    padding: 10px;
+}
+
+.allTrip {
+    background-color: rgba(0,0,0,0.5);
+    padding: 5px;
+    margin: 10px 0 0 0;
+}
+.allTrip table {
+    margin: 20px auto;
+    width: 100%;
+}
+
 /* ----------------------------------------------- */
 
 
@@ -590,6 +591,7 @@ img {
 label{
     display: block;
     color:var(--bg-color);
+    text-transform:uppercase;
 }
 
 input{
